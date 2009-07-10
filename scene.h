@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 #include <string>
-#include "Math.h"
+#include "math.h"
 
 ////smart pointer to simplify freeing of temporary heap allocation
 //template<class T> class Ptr {
