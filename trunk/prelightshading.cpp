@@ -1,4 +1,4 @@
-#include "PreLightShading.h"
+#include "prelightshading.h"
 
 //constants
 const tstring PreLightShading::m_DefaultSceneFilename(_T("adobe_mar13.NVB"));

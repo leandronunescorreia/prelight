@@ -170,15 +170,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\Console.cpp"
+				RelativePath=".\application.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\DefaultShading.cpp"
+				RelativePath=".\console.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\DeferredShading.cpp"
+				RelativePath=".\defaultshading.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\deferredshading.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -202,11 +206,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Math.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PreLightShading.cpp"
+				RelativePath=".\prelightshading.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -226,7 +226,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\RenderDevice.cpp"
+				RelativePath=".\renderdevice.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -238,31 +238,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\ResourceManager.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\Scene.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\TestBed.cpp"
+				RelativePath=".\scene.cpp"
 				>
 			</File>
 		</Filter>
@@ -272,39 +248,19 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\Console.h"
+				RelativePath=".\application.h"
 				>
 			</File>
 			<File
-				RelativePath=".\DefaultShading.h"
+				RelativePath=".\console.h"
 				>
 			</File>
 			<File
-				RelativePath=".\DeferredShading.h"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\Math.h"
+				RelativePath=".\defaultshading.h"
 				>
 			</File>
 			<File
-				RelativePath=".\PreLightShading.h"
+				RelativePath=".\deferredshading.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -324,26 +280,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\RenderDevice.h"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\ResourceManager.h"
+				RelativePath=".\prelightshading.h"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -363,11 +300,26 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\Scene.h"
+				RelativePath=".\renderdevice.h"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\TestBed.h"
+				RelativePath=".\scene.h"
 				>
 			</File>
 		</Filter>
@@ -376,6 +328,34 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="Common"
+			>
+			<File
+				RelativePath=".\common\handletable.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\common\handletable.h"
+				>
+			</File>
+			<File
+				RelativePath=".\common\math.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\common\math.h"
+				>
+			</File>
+			<File
+				RelativePath=".\common\resourcemanager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\common\resourcemanager.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

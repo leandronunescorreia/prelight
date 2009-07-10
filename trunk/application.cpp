@@ -1,8 +1,8 @@
 #define STRICT
 #include "ApplicationApp.h"
 
-#include "DeferredShading.h"
-#include "PreLightShading.h"
+#include "deferredshading.h"
+#include "prelightshading.h"
 
 
 Application _Application;
