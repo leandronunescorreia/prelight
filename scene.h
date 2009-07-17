@@ -126,14 +126,6 @@ public:
 	bool Draw();                                 // Render current scene data by using RenderDevice.
 
     float mTime;
-
-    /**FIX ME: Resource Manage System should be added.*/
-    std::vector<Model *> mModels;
-    std::vector<Light *> mLights;
-
-    std::map<std::string, Mesh *>              mMeshes;
-    std::map<std::string, Material *>          mMaterials;
-    std::map<std::string, IDirect3DTexture9 *> mTextures;
 };
 
 #endif
