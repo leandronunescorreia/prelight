@@ -30,7 +30,7 @@ void Application::Init()
 	mHUD.AddListBox( IDC_MRTBUFFERS, 0, 0, 125, 70, 0, &pList );
 	
 	int i = 0;
-	pList->AddItem( L"MRT0 - Diffuse Texture", (void*)(i++));
+	pList->AddItem( L"MRT0 - Diffuse TextureResource", (void*)(i++));
 	pList->AddItem( L"MRT1 - Normals", (void*)(i++));
 	pList->AddItem( L"MRT2 - Depth", (void*)(i++));
 	pList->AddItem( L"Final Scene", (void*)(i));
@@ -221,7 +221,7 @@ void CALLBACK Application::OnFrameRender( IDirect3DDevice9* pd3dDevice, double f
     HRESULT hr;
 
 	// Begin the scene
-    if (SUCCEEDED(pd3dDevice->BeginScene()))
+    if (SUCCEEDED(pd3dDevice->BeginRender()))
     {
 		mDefaultShading->m_View = *mCamera.GetViewMatrix();
 		mDefaultShading->m_Projection = *mCamera.GetProjMatrix();
@@ -233,7 +233,7 @@ void CALLBACK Application::OnFrameRender( IDirect3DDevice9* pd3dDevice, double f
 		V( mHUD.OnRender( fElapsedTime ) );
 
         // End the scene.
-        V( pd3dDevice->EndScene() );
+        V( pd3dDevice->EndRender() );
     }
 }
 

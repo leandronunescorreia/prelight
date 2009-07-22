@@ -143,7 +143,7 @@ bool StringHashTable::FindValue(const char *key, int& value)
 
 
 HandleTable::Slot::Slot() 
-: handle(cEmptyHandle)
+: handle(cInvalidHandle)
 , refcount(0)
 , name(NULL)
 , data(NULL) 
@@ -190,7 +190,7 @@ HandleTable::Slot* HandleTable::AllocSlot()
     if (mCount < mCapacity)
     {
         int i = mFirstEmptySlot + 1;
-        while(i < mCapacity && cEmptyHandle == mSlots[i].handle) 
+        while(i < mCapacity && cInvalidHandle == mSlots[i].handle) 
             ++i;
         mFirstEmptySlot = i;
     }
@@ -227,7 +227,7 @@ HandleTable::Slot* HandleTable::ReleaseRef(const Handle& handle)
             mFirstEmptySlot = (int)slot->handle;
         --mCount;
 
-        slot->handle = cEmptyHandle;
+        slot->handle = cInvalidHandle;
         return slot;
     }
     return NULL;

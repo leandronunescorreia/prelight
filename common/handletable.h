@@ -55,7 +55,7 @@ class HandleTable
 {
 public:
     typedef int Handle;
-    static const Handle cEmptyHandle = (Handle)-1;
+    static const Handle cInvalidHandle = (Handle)-1;
     static const int    cMaxNumSlots = 0x7fff;
 
     struct Slot

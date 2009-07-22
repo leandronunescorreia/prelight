@@ -16,11 +16,11 @@ struct QuadVertex
 {
     QuadVertex( D3DXVECTOR3 const &pos, D3DXVECTOR2 const &uv): 
     Position(pos), 
-    Texture (uv)
+    TextureResource (uv)
     {};
 
     D3DXVECTOR3 Position;
-    D3DXVECTOR2 Texture;
+    D3DXVECTOR2 TextureResource;
 };
 
 struct LightType
