@@ -274,7 +274,7 @@ HRESULT PreLightShading::CreateQuad( IDirect3DDevice9* pd3dDevice, IDirect3DVert
             pBuff->Position = D3DXVECTOR3((i==0 || i==1) ? -1.0f : 1.0f,
                                            (i==0 || i==3) ? -1.0f : 1.0f,
                                           0.0f);
-            pBuff->Texture  = D3DXVECTOR2(((i==0 || i==1) ? 0.0f : 1.0f) + u_adjust, 
+            pBuff->TextureResource  = D3DXVECTOR2(((i==0 || i==1) ? 0.0f : 1.0f) + u_adjust, 
                                            ((i==0 || i==3) ? 1.0f : 0.0f) + v_adjust);
             pBuff++; 
         }
@@ -1810,7 +1810,7 @@ HRESULT PreLightShading::InitializeScene(IDirect3DDevice9* pd3dDevice)
 
 /*******************************************************************************
 
-Texture management
+TextureResource management
 
 *******************************************************************************/
 
