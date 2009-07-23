@@ -1,17 +1,33 @@
-#ifndef _DEFERREDSHADINGAPP_H_
-#define _DEFERREDSHADINGAPP_H_
+#ifndef _APPLICATION_H_
+#define _APPLICATION_H_
 
-
-extern const Application *gApplication;
+struct AppSetting
+{
+    bool cmdConsole;
+    bool fullScreen;
+    int  resolutionX, resolutionY;
+};
 
 class Application
 {
+    static Application* appInstance;
+    Application();
+
 public:
-    void    Init();
-    void    Run();
+    static Application* self();
+    ~Application();
+
+    bool    Initialize(const AppSetting *setting = NULL);
+    bool    Run();
+    int     Finalize();
 
 protected:
-    void    InitScreen();
-}
+    bool    InitScreen();
+
+    static LONG WINAPI WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+    AppSetting mSetting;
+    const static AppSetting sDefaultSetting;
+};
 
 #endif
