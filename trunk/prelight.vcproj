@@ -45,6 +45,8 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderThrough="stdafx_pch.h"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -117,6 +119,8 @@
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_D3D9"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="stdafx_pch.h"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -248,13 +252,6 @@
 			RelativePath=".\application.cpp"
 			>
 			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Release|Win32"
 				ExcludedFromBuild="true"
 				>
@@ -284,6 +281,14 @@
 		</File>
 		<File
 			RelativePath=".\main.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\stdafx_pch.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\stdafx_pch.h"
 			>
 		</File>
 	</Files>
