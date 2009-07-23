@@ -193,51 +193,55 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="renderdevice"
+			Name="rendersystem"
 			>
-			<File
-				RelativePath=".\renderdevice\renderdevice.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\renderdevice\renderdevice.h"
-				>
-			</File>
-			<File
-				RelativePath=".\renderdevice\renderdevicetypes.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\renderdevice\renderdevicetypes.h"
-				>
-			</File>
-			<File
-				RelativePath=".\renderdevice\texturemanager.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\renderdevice\texturemanager.h"
-				>
-			</File>
 			<Filter
-				Name="d3d9"
+				Name="renderdevice"
 				>
 				<File
-					RelativePath=".\renderdevice\dxstdafx.cpp"
+					RelativePath=".\rendersystem\renderdevice\renderdevice.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\renderdevice\dxstdafx.h"
+					RelativePath=".\rendersystem\renderdevice\renderdevice.h"
 					>
 				</File>
 				<File
-					RelativePath=".\renderdevice\d3d9\renderdevice_d3d9.cpp"
+					RelativePath=".\rendersystem\renderdevice\renderdevicetypes.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\renderdevice\d3d9\renderdevicetypes_d3d9.h"
+					RelativePath=".\rendersystem\renderdevice\renderdevicetypes.h"
 					>
 				</File>
+				<File
+					RelativePath=".\rendersystem\renderdevice\texturemanager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\rendersystem\renderdevice\texturemanager.h"
+					>
+				</File>
+				<Filter
+					Name="d3d9"
+					>
+					<File
+						RelativePath=".\rendersystem\renderdevice\d3d9\dxstdafx.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\rendersystem\renderdevice\d3d9\dxstdafx.h"
+						>
+					</File>
+					<File
+						RelativePath=".\rendersystem\renderdevice\d3d9\renderdevice_d3d9.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\rendersystem\renderdevice\d3d9\renderdevicetypes_d3d9.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<File
@@ -245,7 +249,6 @@
 			>
 			<FileConfiguration
 				Name="Debug|Win32"
-				ExcludedFromBuild="true"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -265,127 +268,6 @@
 			>
 			<FileConfiguration
 				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\console.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\console.h"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\defaultshading.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\defaultshading.h"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\deferredshading.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\deferredshading.h"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
 				>
 				<Tool
 					Name="VCCustomBuildTool"
@@ -403,86 +285,6 @@
 		<File
 			RelativePath=".\main.cpp"
 			>
-		</File>
-		<File
-			RelativePath=".\prelightshading.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\prelightshading.h"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\scene.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\scene.h"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				ExcludedFromBuild="true"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
 		</File>
 	</Files>
 	<Globals>
