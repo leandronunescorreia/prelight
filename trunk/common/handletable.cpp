@@ -38,8 +38,8 @@ StringHashTable::~StringHashTable()
     {
         if (NULL != mBuckets[i])
         {
-            Node *bucket = mBuckets[i];
-            delete bucket;
+             Node *bucket = mBuckets[i];
+             delete bucket;
         }
     }
     delete [] mBuckets;
@@ -78,9 +78,9 @@ bool StringHashTable::Insert(const char *key, int value)
     {
         if (node->hash == hash && 0 == strcmp(node->key, key))
         {
-            /** Change the existed key/node's old value to an new value.*/
-            node->value = value; 
-            return false;
+             /** Change the existed key/node's old value to an new value.*/
+             node->value = value; 
+             return false;
         }
     }
 
@@ -107,10 +107,10 @@ bool StringHashTable::Erase(const char *key)
         Node *node = *ppNode;
         if (node->hash == hash && 0 == strcmp(node->key, key))
         {
-            *ppNode = node->next;
-            node->next = NULL;  ///< Don't delete its subsequent nodes.
-            delete node;
-            return true;    
+             *ppNode = node->next;
+             node->next = NULL;  ///< Don't delete its subsequent nodes.
+             delete node;
+             return true;    
         }
     }
 
@@ -133,8 +133,8 @@ bool StringHashTable::FindValue(const char *key, int& value)
     {
         if (node->hash == hash && 0 == strcmp(node->key, key))
         {
-            value = node->value;
-            return true;
+             value = node->value;
+             return true;
         }
     }
     return false;
@@ -191,7 +191,7 @@ HandleTable::Slot* HandleTable::AllocSlot()
     {
         int i = mFirstEmptySlot + 1;
         while(i < mCapacity && cInvalidHandle == mSlots[i].handle) 
-            ++i;
+             ++i;
         mFirstEmptySlot = i;
     }
     else
@@ -224,7 +224,7 @@ HandleTable::Slot* HandleTable::ReleaseRef(const Handle& handle)
     if (0 == slot->refcount)
     {
         if ((int)slot->handle < mFirstEmptySlot)
-            mFirstEmptySlot = (int)slot->handle;
+             mFirstEmptySlot = (int)slot->handle;
         --mCount;
 
         slot->handle = cInvalidHandle;

@@ -11,7 +11,7 @@
 enum
 {
     MAX_RENDERTARGETS    = 4,
-    MAX_VERTEX_STREAMS   = 8,
+    MAX_VERTEX_STREAMS    = 8,
     MAX_TEXTURE_SAMPLERS = 16
 };
 
@@ -34,7 +34,7 @@ struct RenderDeviceSettings
 struct RenderStates
 {
     /** Only support all color channel writing be enabled/disabled simultaeously.*/
-    bool         mColorWrite;        
+    bool          mColorWrite;        
 
     EFillMode    mFillMode;
     EFaceCull    mFaceCull;
@@ -46,13 +46,13 @@ struct RenderStates
     EBlendFactor mSrcBlendFactor, mDestBlendFactor; 
 
     ECmpFunc     mDepthFunc;
-    bool         mDepthWrite;
+    bool          mDepthWrite;
 
     ECompareFunc mStencilFunc;
     unsigned int mStencilRef;
     unsigned int mStencilMask;
     unsigned int mStencilWriteMask;
-    EStencilOP   mStencilFailOP, mStencilZFailOP, mStencilZPassOP;
+    EStencilOP    mStencilFailOP, mStencilZFailOP, mStencilZPassOP;
 };
 
 class RenderDevice
@@ -63,16 +63,16 @@ public:
     bool    Initialize(const RenderDeviceSettings &settings);
     bool    Finalize();
 
-    const   RenderDeviceSetting& GetSetting();
+    const    RenderDeviceSetting& GetSetting();
     bool    ChangeSettings(const RenderDeviceSettings &settings);
-          
+           
 
     bool    BeginRender();
     bool    EndRender();
-          
+           
     void    Clear(const unsigned int *color, const float *depth, const int *stencil, const Rect const *rect = 0, unsigned int rectcount = 0);
     void    SwapBuffers();
-          
+           
     /** RenderStates accessor functions*/ 
     //@{
     void    SetColorWrite(bool write);
@@ -101,15 +101,15 @@ public:
     void    SetCursorTexture(int id, int xHotSpot, int yHotSpot);
     void    SetCursorPosition(int x, int y);
     //@}    
-            
-    void*   GetAPIRenderDevice();
-            
-            
-    const   RenderStates&       GetRenderStates();
-    const   SamplerStates&      GetSamplerStates(int idx);
+             
+    void*    GetAPIRenderDevice();
+             
+             
+    const    RenderStates&        GetRenderStates();
+    const    SamplerStates&       GetSamplerStates(int idx);
 
     void    GetBackBufferSize(int &w, int &h);
-    void*   GetWindow();
+    void*    GetWindow();
     long    WindowProc(void *hWnd, unsigned int msg, unsigned int wparam, long lparam);
     void    SetAnimationTime(float time);
     bool    CheckDeviceLost();
@@ -140,54 +140,54 @@ protected:
     /** Vertex buffer functions*/
     //@{
     VertexBuffer*  CreateVertexBuffer(int vertexCount, int vertexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-    void           DestroyVertexBuffer(VertexBuffer *vbuf);
-    void*          LockVertexBuffer(VertexBuffer *vbuf, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCK_WRITE);
-    void           UnlockVertexBuffer(VertexBuffer *vbuf);
+    void            DestroyVertexBuffer(VertexBuffer *vbuf);
+    void*           LockVertexBuffer(VertexBuffer *vbuf, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCK_WRITE);
+    void            UnlockVertexBuffer(VertexBuffer *vbuf);
     //@}
 
     /** Stream functions*/
     //@{
-    void               SetStreamSource(int idx, VertexBuffer *vertexSource, int offsetInBytes = 0);
+    void                SetStreamSource(int idx, VertexBuffer *vertexSource, int offsetInBytes = 0);
     StreamRegisterMap* CreateStreamRegistersMap(const CVertexSpec &spec);
-    void               DestroyStreamRegistersMap(StreamRegisterMap* map);
-    void               SetStreamRegistersMap(StreamRegisterMap* map);
+    void                DestroyStreamRegistersMap(StreamRegisterMap* map);
+    void                SetStreamRegistersMap(StreamRegisterMap* map);
     //@}
 
     /** Index buffer functions*/
     //@{
-    IndexBuffer*   CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-    void           DestroyIndexBuffer(IndexBuffer *buf);
-    void*          LockIndexBuffer(IndexBuffer *buf, int firstIndex = 0, int numIndices = 0, ELockType lock = LOCK_WRITE);
-    void           UnlockIndexBuffer(IndexBuffer *buf);
-    void           SetIndexBuffer(IndexBuffer *buf);
+    IndexBuffer*    CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
+    void            DestroyIndexBuffer(IndexBuffer *buf);
+    void*           LockIndexBuffer(IndexBuffer *buf, int firstIndex = 0, int numIndices = 0, ELockType lock = LOCK_WRITE);
+    void            UnlockIndexBuffer(IndexBuffer *buf);
+    void            SetIndexBuffer(IndexBuffer *buf);
     //@}
 
 
     /** Vertex Shader functions*/
     //@{
     VertexShader*  CreateVertexShader(const char *code, int size);
-    void           DestroyVertexShader(VertexShader *vshader);
-    void           SetVertexShader(VertexShader *vshader);
-    void           SetVertexShaderConstant(int startRegister, const float *value, int count);
-    void           SetVertexShaderConstant(int startRegister, const int *value, int count);
+    void            DestroyVertexShader(VertexShader *vshader);
+    void            SetVertexShader(VertexShader *vshader);
+    void            SetVertexShaderConstant(int startRegister, const float *value, int count);
+    void            SetVertexShaderConstant(int startRegister, const int *value, int count);
     //@}
 
     /** Pixel Shader functions*/
     //@{
-    PixelShader*   CreatePixelShader(const char *code, int size);
-    void           DestroyPixelShader(PixelShader *pshader);
-    void           SetPixelShader(PixelShader *pshader);
-    void           SetPixelShaderConstant(int startRegister, const float *value, int count);
-    void           SetPixelShaderConstant(int startRegister, const int *value, int count);
+    PixelShader*    CreatePixelShader(const char *code, int size);
+    void            DestroyPixelShader(PixelShader *pshader);
+    void            SetPixelShader(PixelShader *pshader);
+    void            SetPixelShaderConstant(int startRegister, const float *value, int count);
+    void            SetPixelShaderConstant(int startRegister, const int *value, int count);
     //@}
 
     /** Occusion Query */
     //@{
     OcclusionQuery* CreateOcclusionQuery();
-    void            DestroyOcclusionQuery(OcclusionQuery *oquery);
-    void            BeginOcclusionQuery(OcclusionQuery *oquery);
-    void            EndOcclusionQuery(OcclusionQuery *oquery);
-    bool            GetOcclusionQueryResult(OcclusionQuery, int &numPixels);
+    void             DestroyOcclusionQuery(OcclusionQuery *oquery);
+    void             BeginOcclusionQuery(OcclusionQuery *oquery);
+    void             EndOcclusionQuery(OcclusionQuery *oquery);
+    bool             GetOcclusionQueryResult(OcclusionQuery, int &numPixels);
     //@}
 
     void  OnLostDevice();
@@ -196,10 +196,10 @@ protected:
     bool mInitialized;
     int  mBeginRenderCount;
 
-    RenderDeviceSettings   mSettings;
+    RenderDeviceSettings    mSettings;
     RenderStates        mRenderStates;
 
-    TextureManager      mTextureManager;
+    TextureManager       mTextureManager;
 
     APIRenderDevice*    mAPIRenderDevice;
 
@@ -246,77 +246,77 @@ private:
     Texture* API_CreateTexture(const TextureSpec &spec);
     Texture* API_CreateTexture(const void *data, int byteSize);
     bool     API_DestroyTexture(Texture *texture);
-             
+              
     void*    API_LockTexture(Texture *texture, int mipLevel, ELockType lockType, int *pitch = 0);
     void     API_UnlockTexture(Texture *texture, int mipLevel);
     //@}     
-             
+              
     /** Vertex buffer functions*/
     //@{
     VertexBuffer*  API_CreateVertexBuffer(int vertexCount, int vertexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-    void           API_DestroyVertexBuffer(VertexBuffer *vbuf);
-    void*          API_LockVertexBuffer(VertexBuffer *vbuf, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCK_WRITE);
-    void           API_UnlockVertexBuffer(VertexBuffer *vbuf);
-    //@}           
+    void            API_DestroyVertexBuffer(VertexBuffer *vbuf);
+    void*           API_LockVertexBuffer(VertexBuffer *vbuf, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCK_WRITE);
+    void            API_UnlockVertexBuffer(VertexBuffer *vbuf);
+    //@}            
 
     /** Stream functions*/
     //@{
-    void           API_SetStreamSource(int idx, VertexBuffer *vertexSource, int offsetInBytes = 0);
+    void            API_SetStreamSource(int idx, VertexBuffer *vertexSource, int offsetInBytes = 0);
     StreamMap*     API_CreateStreamRegistersMap(const CVertexSpec &spec);
-    void           API_DestroyStreamRegistersMap(StreamMap *streamMap);
-    void           API_SetStreamRegistersMap(StreamMap *streamMap);
-    //@}           
+    void            API_DestroyStreamRegistersMap(StreamMap *streamMap);
+    void            API_SetStreamRegistersMap(StreamMap *streamMap);
+    //@}            
 
     /** Index buffer functions*/
     //@{
-    IndexBuffer*   API_CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-    void           API_DestroyIndexBuffer(IndexBuffer *ibuf);
-    void*          API_LockIndexBuffer(IndexBuffer *ibuf, int firstIndex = 0, int numIndices = 0, ELockType lockType = LOCK_WRITE);
-    void           API_UnlockIndexBuffer(IndexBuffer *ibuf);
-    void           API_SetIndexBuffer(IndexBuffer *ibuf);
+    IndexBuffer*    API_CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
+    void            API_DestroyIndexBuffer(IndexBuffer *ibuf);
+    void*           API_LockIndexBuffer(IndexBuffer *ibuf, int firstIndex = 0, int numIndices = 0, ELockType lockType = LOCK_WRITE);
+    void            API_UnlockIndexBuffer(IndexBuffer *ibuf);
+    void            API_SetIndexBuffer(IndexBuffer *ibuf);
     //@}
 
 
     /** Vertex Shader functions*/
     //@{
     VertexShader*  API_CreateVertexShader(const char *code, int size);
-    void           API_DestroyVertexShader(VertexShader *vshader);
-    void           API_SetVertexShader(VertexShader *vshader);
-    void           API_SetVertexShaderConstant(int startRegister, const float *value, int count);
-    void           API_SetVertexShaderConstant(int startRegister, const int *value, int count);
+    void            API_DestroyVertexShader(VertexShader *vshader);
+    void            API_SetVertexShader(VertexShader *vshader);
+    void            API_SetVertexShaderConstant(int startRegister, const float *value, int count);
+    void            API_SetVertexShaderConstant(int startRegister, const int *value, int count);
     //@}
 
     /** Pixel Shader functions*/
     //@{
-    PixelShader*   API_CreatePixelShader(const char *code, int size);
-    void           API_DestroyPixelShader(PixelShader *pshader);
-    void           API_SetPixelShader(PixelShader *pshader);
-    void           API_SetPixelShaderConstant(int startRegister, const float *value, int count);
-    void           API_SetPixelShaderConstant(int startRegister, const int *value, int count);
+    PixelShader*    API_CreatePixelShader(const char *code, int size);
+    void            API_DestroyPixelShader(PixelShader *pshader);
+    void            API_SetPixelShader(PixelShader *pshader);
+    void            API_SetPixelShaderConstant(int startRegister, const float *value, int count);
+    void            API_SetPixelShaderConstant(int startRegister, const int *value, int count);
     //@}
 
     /** Occusion Query */
     //@{
     OcclusionQuery* API_CreateOcclusionQuery();
-    void            API_DestroyOcclusionQuery(OcclusionQuery *oquery);
-    void            API_BeginOcclusionQuery(OcclusionQuery *oquery);
-    void            API_EndOcclusionQuery(OcclusionQuery *oquery);
-    bool            API_GetOcclusionQueryResult(OcclusionQuery, int &numPixels);
+    void             API_DestroyOcclusionQuery(OcclusionQuery *oquery);
+    void             API_BeginOcclusionQuery(OcclusionQuery *oquery);
+    void             API_EndOcclusionQuery(OcclusionQuery *oquery);
+    bool             API_GetOcclusionQueryResult(OcclusionQuery, int &numPixels);
     //@}
 
     /** Draw call*/
     //@{
-    void            API_DrawPrimitive(EPrimitiveType primType, int startVertex, int primCount);
-    void            API_DrawPrimitiveUP(EPrimitiveType primType, int primCount, const void *vertexData, int vertexStride);
-    void            API_DrawIndexedPrimitive(EPrimitiveType primType, int startIndex, int primCount, int minVertex, int numVertices, int baseVertexIndex = 0);
-    void            API_DrawIndexedPrimitiveUP(EPrimitiveType primType, int primCount, const void *vertexData, int vertexStride, const void *indexData, int indexStride, int minVertex, int numVertices);
+    void             API_DrawPrimitive(EPrimitiveType primType, int startVertex, int primCount);
+    void             API_DrawPrimitiveUP(EPrimitiveType primType, int primCount, const void *vertexData, int vertexStride);
+    void             API_DrawIndexedPrimitive(EPrimitiveType primType, int startIndex, int primCount, int minVertex, int numVertices, int baseVertexIndex = 0);
+    void             API_DrawIndexedPrimitiveUP(EPrimitiveType primType, int primCount, const void *vertexData, int vertexStride, const void *indexData, int indexStride, int minVertex, int numVertices);
     //@}
 
     /** Cursor*/
     //@{
-    void            API_ShowCursor(bool show);
-    void            API_SetCursorTexture(int id, int xHotSpot, int yHotSpot);
-    void            API_SetCursorPosition(int x, int y);
+    void             API_ShowCursor(bool show);
+    void             API_SetCursorTexture(int id, int xHotSpot, int yHotSpot);
+    void             API_SetCursorPosition(int x, int y);
     //@}
 
     //@}

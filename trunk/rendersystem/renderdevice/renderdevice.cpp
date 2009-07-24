@@ -72,7 +72,7 @@ bool  RenderDevice::BeginRender()
     if (0 == mBeginRenderCount)
     {
         if (!API_BeginScene())
-            return false;
+             return false;
     }
 
     mBeginRenderCount++;
@@ -239,7 +239,7 @@ bool     RenderDevice::DestroyTexture(Texture *texture)
 {
     return API_DestroyTexture(texture);
 }
-         
+          
 void*    RenderDevice::LockTexture(Texture *texture, int mipLevel, ELockType lockType, int *pitch /*= 0*/)
 {
     return API_LockTexture(texture, mipLevel, lockType, pitch);
@@ -251,73 +251,73 @@ void     RenderDevice::UnlockTexture(Texture *texture, int mipLevel)
 }
 
 //@}     
-         
+          
 /** Vertex buffer functions*/
 //@{
 VertexBuffer*  RenderDevice::CreateVertexBuffer(int vertexCount, int vertexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-void           RenderDevice::DestroyVertexBuffer(VertexBuffer *vbuf);
-void*          RenderDevice::LockVertexBuffer(VertexBuffer *vbuf, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCK_WRITE);
-void           RenderDevice::UnlockVertexBuffer(VertexBuffer *vbuf);
-//@}           
+void            RenderDevice::DestroyVertexBuffer(VertexBuffer *vbuf);
+void*           RenderDevice::LockVertexBuffer(VertexBuffer *vbuf, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCK_WRITE);
+void            RenderDevice::UnlockVertexBuffer(VertexBuffer *vbuf);
+//@}            
 
 /** Stream functions*/
 //@{
-void           RenderDevice::SetStreamSource(int idx, VertexBuffer *vertexSource, int offsetInBytes = 0);
+void            RenderDevice::SetStreamSource(int idx, VertexBuffer *vertexSource, int offsetInBytes = 0);
 StreamMap*     RenderDevice::CreateStreamRegistersMap(const CVertexSpec &spec);
-void           RenderDevice::DestroyStreamRegistersMap(StreamMap *streamMap);
-void           RenderDevice::SetStreamRegistersMap(StreamMap *streamMap);
-//@}           
+void            RenderDevice::DestroyStreamRegistersMap(StreamMap *streamMap);
+void            RenderDevice::SetStreamRegistersMap(StreamMap *streamMap);
+//@}            
 
 /** Index buffer functions*/
 //@{
-IndexBuffer*   RenderDevice::CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-void           RenderDevice::DestroyIndexBuffer(IndexBuffer *ibuf);
-void*          RenderDevice::LockIndexBuffer(IndexBuffer *ibuf, int firstIndex = 0, int numIndices = 0, ELockType lockType = LOCK_WRITE);
-void           RenderDevice::UnlockIndexBuffer(IndexBuffer *ibuf);
-void           RenderDevice::SetIndexBuffer(IndexBuffer *ibuf);
+IndexBuffer*    RenderDevice::CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
+void            RenderDevice::DestroyIndexBuffer(IndexBuffer *ibuf);
+void*           RenderDevice::LockIndexBuffer(IndexBuffer *ibuf, int firstIndex = 0, int numIndices = 0, ELockType lockType = LOCK_WRITE);
+void            RenderDevice::UnlockIndexBuffer(IndexBuffer *ibuf);
+void            RenderDevice::SetIndexBuffer(IndexBuffer *ibuf);
 //@}
 
 
 /** Vertex Shader functions*/
 //@{
 VertexShader*  RenderDevice::CreateVertexShader(const char *code, int size);
-void           RenderDevice::DestroyVertexShader(VertexShader *vshader);
-void           RenderDevice::SetVertexShader(VertexShader *vshader);
-void           RenderDevice::SetVertexShaderConstant(int startRegister, const float *value, int count);
-void           RenderDevice::SetVertexShaderConstant(int startRegister, const int *value, int count);
+void            RenderDevice::DestroyVertexShader(VertexShader *vshader);
+void            RenderDevice::SetVertexShader(VertexShader *vshader);
+void            RenderDevice::SetVertexShaderConstant(int startRegister, const float *value, int count);
+void            RenderDevice::SetVertexShaderConstant(int startRegister, const int *value, int count);
 //@}
 
 /** Pixel Shader functions*/
 //@{
-PixelShader*   RenderDevice::CreatePixelShader(const char *code, int size);
-void           RenderDevice::DestroyPixelShader(PixelShader *pshader);
-void           RenderDevice::SetPixelShader(PixelShader *pshader);
-void           RenderDevice::SetPixelShaderConstant(int startRegister, const float *value, int count);
-void           RenderDevice::SetPixelShaderConstant(int startRegister, const int *value, int count);
+PixelShader*    RenderDevice::CreatePixelShader(const char *code, int size);
+void            RenderDevice::DestroyPixelShader(PixelShader *pshader);
+void            RenderDevice::SetPixelShader(PixelShader *pshader);
+void            RenderDevice::SetPixelShaderConstant(int startRegister, const float *value, int count);
+void            RenderDevice::SetPixelShaderConstant(int startRegister, const int *value, int count);
 //@}
 
 /** Occusion Query */
 //@{
 OcclusionQuery* RenderDevice::CreateOcclusionQuery();
-void            RenderDevice::DestroyOcclusionQuery(OcclusionQuery *oquery);
-void            RenderDevice::BeginOcclusionQuery(OcclusionQuery *oquery);
-void            RenderDevice::EndOcclusionQuery(OcclusionQuery *oquery);
-bool            RenderDevice::GetOcclusionQueryResult(OcclusionQuery, int &numPixels);
+void             RenderDevice::DestroyOcclusionQuery(OcclusionQuery *oquery);
+void             RenderDevice::BeginOcclusionQuery(OcclusionQuery *oquery);
+void             RenderDevice::EndOcclusionQuery(OcclusionQuery *oquery);
+bool             RenderDevice::GetOcclusionQueryResult(OcclusionQuery, int &numPixels);
 //@}
 
 /** Draw call*/
 //@{
-void            RenderDevice::DrawPrimitive(EPrimitiveType primType, int startVertex, int primCount);
-void            RenderDevice::DrawPrimitiveUP(EPrimitiveType primType, int primCount, const void *vertexData, int vertexStride);
-void            RenderDevice::DrawIndexedPrimitive(EPrimitiveType primType, int startIndex, int primCount, int minVertex, int numVertices, int baseVertexIndex = 0);
-void            RenderDevice::DrawIndexedPrimitiveUP(EPrimitiveType primType, int primCount, const void *vertexData, int vertexStride, const void *indexData, int indexStride, int minVertex, int numVertices);
-//@}            
+void             RenderDevice::DrawPrimitive(EPrimitiveType primType, int startVertex, int primCount);
+void             RenderDevice::DrawPrimitiveUP(EPrimitiveType primType, int primCount, const void *vertexData, int vertexStride);
+void             RenderDevice::DrawIndexedPrimitive(EPrimitiveType primType, int startIndex, int primCount, int minVertex, int numVertices, int baseVertexIndex = 0);
+void             RenderDevice::DrawIndexedPrimitiveUP(EPrimitiveType primType, int primCount, const void *vertexData, int vertexStride, const void *indexData, int indexStride, int minVertex, int numVertices);
+//@}             
 
 /** Cursor*/
 //@{
-void            RenderDevice::ShowCursor(bool show);
-void            RenderDevice::SetCursorTexture(int id, int xHotSpot, int yHotSpot);
-void            RenderDevice::SetCursorPosition(int x, int y);
-//@}            
-                
-void*           RenderDevice::GetAPIRenderDevice();
+void             RenderDevice::ShowCursor(bool show);
+void             RenderDevice::SetCursorTexture(int id, int xHotSpot, int yHotSpot);
+void             RenderDevice::SetCursorPosition(int x, int y);
+//@}             
+                 
+void*            RenderDevice::GetAPIRenderDevice();

@@ -15,13 +15,13 @@
 
 // If app hasn't choosen, set to work with Windows 98, Windows Me, Windows 2000, Windows XP and beyond
 #ifndef WINVER
-#define WINVER         0x0410
+#define WINVER          0x0410
 #endif
 #ifndef _WIN32_WINDOWS
 #define _WIN32_WINDOWS 0x0410 
 #endif
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT   0x0500 
+#define _WIN32_WINNT    0x0500 
 #endif
 
 #pragma warning( disable : 4100 ) // disable unreference formal parameter warnings for /W4 builds
@@ -32,9 +32,9 @@
 #include <mmsystem.h>
 #include <commctrl.h> // for InitCommonControls() 
 #include <shellapi.h> // for ExtractIcon()
-#include <new.h>      // for placement new
-#include <math.h>      
-#include <limits.h>      
+#include <new.h>       // for placement new
+#include <math.h>       
+#include <limits.h>       
 #include <stdio.h>
 #include <multimon.h> 
 
@@ -90,14 +90,14 @@
 
 #if defined(DEBUG) | defined(_DEBUG)
 #ifndef V
-#define V(x)           { hr = x; if( FAILED(hr) ) { DXUTTrace( __FILE__, (DWORD)__LINE__, hr, L#x, true ); } }
+#define V(x)            { hr = x; if( FAILED(hr) ) { DXUTTrace( __FILE__, (DWORD)__LINE__, hr, L#x, true ); } }
 #endif
 #ifndef V_RETURN
 #define V_RETURN(x)    { hr = x; if( FAILED(hr) ) { return DXUTTrace( __FILE__, (DWORD)__LINE__, hr, L#x, true ); } }
 #endif
 #else
 #ifndef V
-#define V(x)           { hr = x; }
+#define V(x)            { hr = x; }
 #endif
 #ifndef V_RETURN
 #define V_RETURN(x)    { hr = x; if( FAILED(hr) ) { return hr; } }
@@ -105,13 +105,13 @@
 #endif
 
 #ifndef SAFE_DELETE
-#define SAFE_DELETE(p)       { if(p) { delete (p);     (p)=NULL; } }
+#define SAFE_DELETE(p)        { if(p) { delete (p);     (p)=NULL; } }
 #endif    
 #ifndef SAFE_DELETE_ARRAY
-#define SAFE_DELETE_ARRAY(p) { if(p) { delete[] (p);   (p)=NULL; } }
+#define SAFE_DELETE_ARRAY(p) { if(p) { delete[] (p);    (p)=NULL; } }
 #endif    
 #ifndef SAFE_RELEASE
-#define SAFE_RELEASE(p)      { if(p) { (p)->Release(); (p)=NULL; } }
+#define SAFE_RELEASE(p)       { if(p) { (p)->Release(); (p)=NULL; } }
 #endif
 
 #endif // !defined(DXSDK_STDAFX_H)
