@@ -25,16 +25,16 @@ public:
     Handle AddResource(const char* name, Resource* res);
 
     Handle AddRef(const char* name);
-    bool   ReleaseRef(const Handle& handle);
+    bool    ReleaseRef(const Handle& handle);
 
     const char* FindName(const Handle& handle);
     const Resource* FindResource(const Handle& handle);
 
-    int Capacity()      { return mHandleTable->Capacity();  }
+    int Capacity()       { return mHandleTable->Capacity();  }
     int ResourceCount() { return mHandleTable->Count();     }
 
 private:
-    HandleTable         mHandleTable;
+    HandleTable          mHandleTable;
     StringHashTable     mNameTable;
 
 private:
@@ -71,10 +71,10 @@ typename ResourceManager<ResType>::Handle ResourceManager<ResType>::AddResource(
     {
         HandleTable::Slot *slot = mHandleTable.AddRef(handle);
         if ((void*)res == slot->data)
-            return slot->handle;
+             return slot->handle;
 
         if (NULL != slot->data)
-            delete (Resource*)(slot->data);
+             delete (Resource*)(slot->data);
 
         slot->data = (void*)res;
         return handle;
@@ -115,8 +115,8 @@ bool ResourceManager<ResType>::ReleaseRef(const Handle& handle)
 
         if (NULL != unrefSlot->data)
         {    
-            delete (Resource*)(unrefSlot->data);
-            unrefSlot->data = NULL;
+             delete (Resource*)(unrefSlot->data);
+             unrefSlot->data = NULL;
         }
         return true;
     }

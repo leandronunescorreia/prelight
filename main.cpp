@@ -1,13 +1,11 @@
-#include "application.h"
+#include "engine.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
 {
-    if (Application::self()->Initialize())
+    if (Engine::self()->Initialize())
     {
-        while( Application::self()->Run() )
-            ;
-
-        return Application::self()->Finalize();
+        while( Engine::self()->Update() )
+        {};
     }
-    return -1;
+    return 0;
 }

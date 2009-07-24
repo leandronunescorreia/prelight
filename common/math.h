@@ -7,14 +7,14 @@
 #include <stdlib.h>
 #include <float.h>
 
-#define math_pi			      3.14159265358979323846264338327950288419716939937510582f
+#define math_pi			       3.14159265358979323846264338327950288419716939937510582f
 
-#define math_to_rad             math_pi / 180.0f
-#define math_to_deg             180.f / math_pi
+#define math_to_rad              math_pi / 180.0f
+#define math_to_deg              180.f / math_pi
 #define math_eps		        10e-6f
-#define math_big_eps            10e-2f
-#define math_small_eps          10e-6f
-#define math_sqrthalf           0.7071067811865475244f
+#define math_big_eps             10e-2f
+#define math_small_eps           10e-6f
+#define math_sqrthalf            0.7071067811865475244f
 
 struct vec2;
 struct vec3;
@@ -75,10 +75,10 @@ struct vec2
 
     union {
         struct {
-            float x,y;          // standard names for components
+             float x,y;           // standard names for components
         };
         struct {
-            float s,t;          // standard names for components
+             float s,t;           // standard names for components
         };
         float vec_array[2];     // array access
     };
@@ -179,10 +179,10 @@ struct vec3
 
     union {
         struct {
-            float x,y,z;        // standard names for components
+             float x,y,z;        // standard names for components
         };
         struct {
-            float s,t,r;        // standard names for components
+             float s,t,r;        // standard names for components
         };
         float vec_array[3];     // array access
     };
@@ -288,10 +288,10 @@ struct vec4
 
     union {
         struct {
-            float x,y,z,w;          // standard names for components
+             float x,y,z,w;           // standard names for components
         };
         struct {
-            float s,t,r,q;          // standard names for components
+             float s,t,r,q;           // standard names for components
         };
         float vec_array[4];     // array access
     };
@@ -345,10 +345,10 @@ struct mat3
     mat3(const float * array);
     mat3(const mat3 & M);
     mat3( const float& f0,  const float& f1,  const float& f2,  
-          const float& f3,  const float& f4,  const float& f5,  
-          const float& f6,  const float& f7,  const float& f8 )
+           const float& f3,  const float& f4,  const float& f5,  
+           const float& f6,  const float& f7,  const float& f8 )
   		  : a00( f0 ), a10( f1 ), a20( f2 ), 
-            a01( f3 ), a11( f4 ), a21( f5 ),
+             a01( f3 ), a11( f4 ), a21( f5 ),
   		    a02( f6 ), a12( f7 ), a22( f8) { }
 
     const vec3 col(const int i) const
@@ -374,14 +374,14 @@ struct mat3
     mat3 & operator*=(const float & lambda)
     {
         for (int i = 0; i < 9; ++i)
-            m[i] *= lambda;
+             m[i] *= lambda;
         return *this;
     }
 
     mat3 & operator-=(const mat3 & M)
     {
         for (int i = 0; i < 9; ++i)
-            m[i] -= M.m[i];
+             m[i] -= M.m[i];
         return *this;
     }
 
@@ -404,18 +404,18 @@ struct mat3
 
     // Matrix norms...
     // Compute || M ||
-    //                1
+    //                 1
     float norm_one();
 
     // Compute || M ||
-    //                +inf
+    //                 +inf
     float norm_inf();
 
     union {
         struct {
-            float a00, a10, a20;        // standard names for components
-            float a01, a11, a21;        // standard names for components
-            float a02, a12, a22;        // standard names for components
+             float a00, a10, a20;        // standard names for components
+             float a01, a11, a21;        // standard names for components
+             float a02, a12, a22;        // standard names for components
         };
         float m[9];     // array access
     };
@@ -448,7 +448,7 @@ struct mat4
     {
         return vec4(m[i], m[i + 4], m[i + 8], m[i + 12]);
     }
-   
+    
     const float& operator()(const int& i, const int& j) const
     {
         return m[ j * 4 + i ];
@@ -492,24 +492,24 @@ struct mat4
 
     union {
         struct {
-            float a00, a10, a20, a30;   // standard names for components
-            float a01, a11, a21, a31;   // standard names for components
-            float a02, a12, a22, a32;   // standard names for components
-            float a03, a13, a23, a33;   // standard names for components
+             float a00, a10, a20, a30;    // standard names for components
+             float a01, a11, a21, a31;    // standard names for components
+             float a02, a12, a22, a32;    // standard names for components
+             float a03, a13, a23, a33;    // standard names for components
         };
         struct {
-            float _11, _12, _13, _14;   // standard names for components
-            float _21, _22, _23, _24;   // standard names for components
-            float _31, _32, _33, _34;   // standard names for components
-            float _41, _42, _43, _44;   // standard names for components
+             float _11, _12, _13, _14;    // standard names for components
+             float _21, _22, _23, _24;    // standard names for components
+             float _31, _32, _33, _34;    // standard names for components
+             float _41, _42, _43, _44;    // standard names for components
         };
         union {
-            struct {
-                float b00, b10, b20, p; // standard names for components
-                float b01, b11, b21, q; // standard names for components
-                float b02, b12, b22, r; // standard names for components
-                float x, y, z, w;       // standard names for components
-            };
+             struct {
+                 float b00, b10, b20, p; // standard names for components
+                 float b01, b11, b21, q; // standard names for components
+                 float b02, b12, b22, r; // standard names for components
+                 float x, y, z, w;        // standard names for components
+             };
         };
         float m[16];     // array access
     };
@@ -558,50 +558,50 @@ extern quat & mat_2_quat(quat &q,const mat3 &M);
 
 
 // constant algebraic values
-static const float mat4_id_raw[] =         { 1.0f, 0.0f, 0.0f, 0.0f,
-                                             0.0f, 1.0f, 0.0f, 0.0f,
-                                             0.0f, 0.0f, 1.0f, 0.0f,
-                                             0.0f, 0.0f, 0.0f, 1.0f };
-                                          
-static const float mat4_null_raw[] =       { 0.0f, 0.0f, 0.0f, 0.0f,
-                                             0.0f, 0.0f, 0.0f, 0.0f,
-                                             0.0f, 0.0f, 0.0f, 0.0f,
-                                             0.0f, 0.0f, 0.0f, 0.0f };
-                                          
+static const float mat4_id_raw[] =          { 1.0f, 0.0f, 0.0f, 0.0f,
+                                                0.0f, 1.0f, 0.0f, 0.0f,
+                                                0.0f, 0.0f, 1.0f, 0.0f,
+                                                0.0f, 0.0f, 0.0f, 1.0f };
+                                             
+static const float mat4_null_raw[] =        { 0.0f, 0.0f, 0.0f, 0.0f,
+                                                0.0f, 0.0f, 0.0f, 0.0f,
+                                                0.0f, 0.0f, 0.0f, 0.0f,
+                                                0.0f, 0.0f, 0.0f, 0.0f };
+                                             
 static const float mat4_scale_bias_raw[] = { 0.5f, 0.0f, 0.0f, 0.0f,
-                                             0.0f, 0.5f, 0.0f, 0.0f,
-                                             0.0f, 0.0f, 0.5f, 0.0f,
-                                             0.5f, 0.5f, 0.5f, 1.0f };
-                                          
-static const float mat3_id_raw[] =         { 1.0f, 0.0f, 0.0f,
-                                             0.0f, 1.0f, 0.0f,
-                                             0.0f, 0.0f, 1.0f };
+                                                0.0f, 0.5f, 0.0f, 0.0f,
+                                                0.0f, 0.0f, 0.5f, 0.0f,
+                                                0.5f, 0.5f, 0.5f, 1.0f };
+                                             
+static const float mat3_id_raw[] =          { 1.0f, 0.0f, 0.0f,
+                                                0.0f, 1.0f, 0.0f,
+                                                0.0f, 0.0f, 1.0f };
 
 
-static const vec2      vec2_null(0.0f,0.0f);
-static const vec4      vec4_one(1.0f,1.0f,1.0f,1.0f);
-static const vec3      vec3_one(1.0f,1.0f,1.0f);
-static const vec3      vec3_null(0.0f,0.0f,0.0f);
-static const vec3      vec3_x(1.0f,0.0f,0.0f);
-static const vec3      vec3_y(0.0f,1.0f,0.0f);
-static const vec3      vec3_z(0.0f,0.0f,1.0f);
-static const vec3      vec3_neg_x(-1.0f,0.0f,0.0f);
-static const vec3      vec3_neg_y(0.0f,-1.0f,0.0f);
-static const vec3      vec3_neg_z(0.0f,0.0f,-1.0f);
-static const vec4      vec4_null(0.0f,0.0f,0.0f,0.0f);
-static const vec4      vec4_x(1.0f,0.0f,0.0f,0.0f);
-static const vec4      vec4_neg_x(-1.0f,0.0f,0.0f,0.0f);
-static const vec4      vec4_y(0.0f,1.0f,0.0f,0.0f);
-static const vec4      vec4_neg_y(0.0f,-1.0f,0.0f,0.0f);
-static const vec4      vec4_z(0.0f,0.0f,1.0f,0.0f);
-static const vec4      vec4_neg_z(0.0f,0.0f,-1.0f,0.0f);
-static const vec4      vec4_w(0.0f,0.0f,0.0f,1.0f);
-static const vec4      vec4_neg_w(0.0f,0.0f,0.0f,-1.0f);
-static const quat      quat_id(0.0f,0.0f,0.0f,1.0f);
-static const mat4      mat4_id(mat4_id_raw);
-static const mat3      mat3_id(mat3_id_raw);
-static const mat4      mat4_null(mat4_null_raw);
-static const mat4      mat4_scale_bias(mat4_scale_bias_raw);
+static const vec2       vec2_null(0.0f,0.0f);
+static const vec4       vec4_one(1.0f,1.0f,1.0f,1.0f);
+static const vec3       vec3_one(1.0f,1.0f,1.0f);
+static const vec3       vec3_null(0.0f,0.0f,0.0f);
+static const vec3       vec3_x(1.0f,0.0f,0.0f);
+static const vec3       vec3_y(0.0f,1.0f,0.0f);
+static const vec3       vec3_z(0.0f,0.0f,1.0f);
+static const vec3       vec3_neg_x(-1.0f,0.0f,0.0f);
+static const vec3       vec3_neg_y(0.0f,-1.0f,0.0f);
+static const vec3       vec3_neg_z(0.0f,0.0f,-1.0f);
+static const vec4       vec4_null(0.0f,0.0f,0.0f,0.0f);
+static const vec4       vec4_x(1.0f,0.0f,0.0f,0.0f);
+static const vec4       vec4_neg_x(-1.0f,0.0f,0.0f,0.0f);
+static const vec4       vec4_y(0.0f,1.0f,0.0f,0.0f);
+static const vec4       vec4_neg_y(0.0f,-1.0f,0.0f,0.0f);
+static const vec4       vec4_z(0.0f,0.0f,1.0f,0.0f);
+static const vec4       vec4_neg_z(0.0f,0.0f,-1.0f,0.0f);
+static const vec4       vec4_w(0.0f,0.0f,0.0f,1.0f);
+static const vec4       vec4_neg_w(0.0f,0.0f,0.0f,-1.0f);
+static const quat       quat_id(0.0f,0.0f,0.0f,1.0f);
+static const mat4       mat4_id(mat4_id_raw);
+static const mat3       mat3_id(mat3_id_raw);
+static const mat4       mat4_null(mat4_null_raw);
+static const mat4       mat4_scale_bias(mat4_scale_bias_raw);
 
 // normalizes a vector and return a reference of itself
 extern vec2 & normalize(vec2 & u);
@@ -641,13 +641,13 @@ extern float dot(const vec4 & v, const vec3 & w);
 // compute the reflected vector R of L w.r.t N - vectors need to be 
 // normalized
 //
-//                R     N     L
-//                  _       _
-//                 |\   ^   /|
-//                   \  |  /
-//                    \ | /
-//                     \|/
-//                      +
+//                 R     N     L
+//                    _        _
+//                  |\    ^    /|
+//                    \  |  /
+//                     \ | /
+//                       \|/
+//                        +
 extern vec3 & reflect(vec3 & r, const vec3 & n, const vec3 & l);
 
 // Computes u = v * lambda + u
@@ -705,41 +705,41 @@ extern mat4 & negate(mat4 & M);
 extern mat3 & negate(mat3 & M);
 
 // Computes B = Transpose(A)
-//       T
+//        T
 //  B = A
 extern mat3 & transpose(mat3 & B, const mat3 & A);
 extern mat4 & transpose(mat4 & B, const mat4 & A);
 
 // Computes B = Transpose(B)
-//       T
+//        T
 //  B = B
 extern mat3 & transpose(mat3 & B);
 extern mat4 & transpose(mat4 & B);
 
 // Computes B = inverse(A)
-//       -1
+//        -1
 //  B = A
 extern mat4 & invert(mat4 & B, const mat4 & A);
 extern mat3 & invert(mat3 & B, const mat3 & A);
 
 // Computes B = inverse(A)
-//                                       T  T
-//                   (R t)             (R -R t)
+//                                          T  T
+//                    (R t)              (R -R t)
 // assuming that A = (0 1) so that B = (0    1)
 //  B = A
 extern mat4 & invert_rot_trans(mat4 & B, const mat4 & A);
 
 extern mat4 & look_at(mat4 & M, const vec3 & eye, const vec3 & center, const vec3 & up);
 extern mat4 & frustum(mat4 & M, const float l, const float r, const float b, 
-               const float t, const float n, const float f);
+                const float t, const float n, const float f);
 
 extern mat4 & perspective(mat4 & M, const float fovy, const float aspect, const float n, const float f);
 extern mat4 & ortho(mat4 & M, const float left, 
-                              const float right, 
-                              const float bottom, 
-                              const float top,
-                              const float n,
-                              const float f);
+                                const float right, 
+                                const float bottom, 
+                                const float top,
+                                const float n,
+                                const float f);
 
 /* Decompose Affine Matrix 
  *    A = TQS, where

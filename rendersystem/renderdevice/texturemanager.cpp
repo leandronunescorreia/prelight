@@ -36,7 +36,7 @@ TextureManager::TextureHandle TextureManager::FindOrLoadTexture(const char *file
 
     TextureHandle texHandle = mResourceMgr->AddRef(filename);
     if (cInvalidHandle != texHandle)
-        return texHandle;   ///< Directly return the existed texture's handle after added its refcount.
+        return texHandle;    ///< Directly return the existed texture's handle after added its refcount.
 
     /**FIX ME. Should change to asynchronous file loading.*/
     FILE *file = fopen(filename, "rb");
@@ -69,7 +69,7 @@ TextureManager::TextureHandle TextureManager::FindOrCreateTexture(const char *na
 
     TextureHandle texHandle = mResourceMgr->AddRef(name);
     if (cInvalidHandle != texHandle)
-        return texHandle;   ///< Directly return the existed texture's handle after added its refcount.
+        return texHandle;    ///< Directly return the existed texture's handle after added its refcount.
 
     Texture *texture = gRenderDevice->CreateTexture(spec);
     if (NULL == texture)

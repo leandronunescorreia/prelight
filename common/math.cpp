@@ -6,12 +6,12 @@ mat3::mat3()
 
 mat3::mat3(const float* array)
 {
-    memcpy(mat_array, array, sizeof(float) * 9);
+    memcpy(m, array, sizeof(float) * 9);
 }
 
 mat3::mat3(const mat3 & M)
 {
-    memcpy(mat_array, M.mat_array, sizeof(float) * 9);
+    memcpy(m, M.m, sizeof(float) * 9);
 }
 
 mat4::mat4()
@@ -20,12 +20,12 @@ mat4::mat4()
 
 mat4::mat4(const float* array)
 {
-    memcpy(mat_array, array, sizeof(float) * 16);
+    memcpy(m, array, sizeof(float) * 16);
 }
 
 mat4::mat4(const mat4& M)
 {
-    memcpy(mat_array, M.mat_array, sizeof(float) * 16);
+    memcpy(m, M.m, sizeof(float) * 16);
 }
 
 vec3 & cross(vec3 & u, const vec3 & v, const vec3 & w)
@@ -350,8 +350,8 @@ mat3 & add(mat3& A, const mat3& B)
 // Computes C = A + B
 mat4 & add(mat4 & C, const mat4 & A, const mat4 & B)
 {
-                                // If there is selfassignment involved
-                                // we can't go without a temporary.
+                                  // If there is selfassignment involved
+                                  // we can't go without a temporary.
     if (&C == &A || &C == &B)
     {
         mat4 mTemp;
@@ -399,8 +399,8 @@ mat4 & add(mat4 & C, const mat4 & A, const mat4 & B)
 
 mat3 & add(mat3 & C, const mat3 & A, const mat3 & B)
 {
-                                // If there is selfassignment involved
-                                // we can't go without a temporary.
+                                  // If there is selfassignment involved
+                                  // we can't go without a temporary.
     if (&C == &A || &C == &B)
     {
         mat3 mTemp;
@@ -414,7 +414,7 @@ mat3 & add(mat3 & C, const mat3 & A, const mat3 & B)
         mTemp.a20 = A.a20 + B.a20;
         mTemp.a21 = A.a21 + B.a21;
         mTemp.a22 = A.a22 + B.a22;
-   
+    
         C = mTemp;
     }
     else
@@ -435,18 +435,18 @@ mat3 & add(mat3 & C, const mat3 & A, const mat3 & B)
 
 // C = A * B
 
-// C.a00 C.a01 C.a02 C.a03   A.a00 A.a01 A.a02 A.a03   B.a00 B.a01 B.a02 B.a03
-//                                                                            
-// C.a10 C.a11 C.a12 C.a13   A.a10 A.a11 A.a12 A.a13   B.a10 B.a11 B.a12 B.a13
-//                                                                         
-// C.a20 C.a21 C.a22 C.a23   A.a20 A.a21 A.a22 A.a23   B.a20 B.a21 B.a22 B.a23  
-//                                                                            
+// C.a00 C.a01 C.a02 C.a03    A.a00 A.a01 A.a02 A.a03    B.a00 B.a01 B.a02 B.a03
+//                                                                                 
+// C.a10 C.a11 C.a12 C.a13    A.a10 A.a11 A.a12 A.a13    B.a10 B.a11 B.a12 B.a13
+//                                                                              
+// C.a20 C.a21 C.a22 C.a23    A.a20 A.a21 A.a22 A.a23    B.a20 B.a21 B.a22 B.a23  
+//                                                                                 
 // C.a30 C.a31 C.a32 C.a33 = A.a30 A.a31 A.a32 A.a33 * B.a30 B.a31 B.a32 B.a33
 
 mat4 & mult(mat4& C, const mat4& A, const mat4& B)
 {
-                                // If there is selfassignment involved
-                                // we can't go without a temporary.
+                                  // If there is selfassignment involved
+                                  // we can't go without a temporary.
     if (&C == &A || &C == &B)
     {
         mat4 mTemp;
@@ -517,16 +517,16 @@ mat4 mat4::operator*(const mat4& B) const
 
 // C = A * B
 
-// C.a00 C.a01 C.a02   A.a00 A.a01 A.a02   B.a00 B.a01 B.a02
-//                                                          
-// C.a10 C.a11 C.a12   A.a10 A.a11 A.a12   B.a10 B.a11 B.a12
-//                                                          
+// C.a00 C.a01 C.a02    A.a00 A.a01 A.a02    B.a00 B.a01 B.a02
+//                                                              
+// C.a10 C.a11 C.a12    A.a10 A.a11 A.a12    B.a10 B.a11 B.a12
+//                                                              
 // C.a20 C.a21 C.a22 = A.a20 A.a21 A.a22 * B.a20 B.a21 B.a22
 
 mat3 & mult(mat3& C, const mat3& A, const mat3& B)
 {
-                                // If there is sel fassignment involved
-                                // we can't go without a temporary.
+                                  // If there is sel fassignment involved
+                                  // we can't go without a temporary.
     if (&C == &A || &C == &B)
     {
         mat3 mTemp;
@@ -662,8 +662,8 @@ float det2x2(float a1, float a2, float b1, float b2)
 
 */
 float det3x3(float a1, float a2, float a3, 
-                         float b1, float b2, float b3, 
-                         float c1, float c2, float c3)
+                           float b1, float b2, float b3, 
+                           float c1, float c2, float c3)
 {
     return a1 * det2x2(b2, b3, c2, c3) - b1 * det2x2(a2, a3, c2, c3) + c1 * det2x2(a2, a3, b2, b3);
 }
@@ -694,9 +694,9 @@ mat4 & invert(mat4& B, const mat4& A)
 
     det = (A.a00 * B.a00) + (A.a01 * B.a10) + (A.a02 * B.a20) + (A.a03 * B.a30);
 
-                                // The following divions goes unchecked for division
-                                // by zero. We should consider throwing an exception
-                                // if det < eps.
+                                  // The following divions goes unchecked for division
+                                  // by zero. We should consider throwing an exception
+                                  // if det < eps.
     oodet = 1.0f / det;
 
     B.a00 *= oodet;
@@ -746,8 +746,8 @@ mat4 & invert_rot_trans(mat4& B, const mat4& A)
 float det(const mat3& A)
 {
     return det3x3(A.a00, A.a01, A.a02, 
-                 A.a10, A.a11, A.a12, 
-                 A.a20, A.a21, A.a22);
+                  A.a10, A.a11, A.a12, 
+                  A.a20, A.a21, A.a22);
 }
 
 mat3 & invert(mat3& B, const mat3& A)
@@ -854,7 +854,7 @@ mat4 & look_at(mat4& M, const vec3& eye, const vec3& center, const vec3& up)
 }
 
 mat4 & frustum(mat4& M, const float l, const float r, const float b, 
-               const float t, const float n, const float f)
+                const float t, const float n, const float f)
 {
     M.a00 = (2.0f*n) / (r-l);
     M.a10 = 0.0;
@@ -892,11 +892,11 @@ mat4 & perspective(mat4& M, const float fovy, const float aspect, const float n,
 }
 
 extern mat4 & ortho(mat4 & M, const float left, 
-                              const float right, 
-                              const float bottom, 
-                              const float top,
-                              const float n,
-                              const float f)
+                                const float right, 
+                                const float bottom, 
+                                const float top,
+                                const float n,
+                                const float f)
 {
     M.a00 = 2.0f / (right - left);
     M.a01 = 0;
@@ -1386,14 +1386,14 @@ quat & mat4::get_rot(quat& q) const
 mat4 & negate(mat4 & M)
 {
     for (int i = 0; i < 16; ++i)
-        M.mat_array[i]= -M.mat_array[i];
+        M.m[i]= -M.m[i];
     return M;
 }
 
 mat3 & negate(mat3 & M)
 {
     for (int i = 0; i < 9; ++i)
-        M.mat_array[i]= -M.mat_array[i];
+        M.m[i]= -M.m[i];
     return M;
 }
 
@@ -1480,7 +1480,7 @@ mat3& tangent_basis(mat3& basis, const vec3& v0, const vec3& v1, const vec3& v2,
     d = sqrtf(x*x + y*y);
     if (d < r * 0.70710678118654752440) {    /* Inside sphere */
         z = sqrtf(r*r - d*d);
-    } else {           /* On hyperbola */
+    } else {            /* On hyperbola */
         t = r / (float)1.41421356237309504880;
         z = t*t / d;
     }
@@ -1549,35 +1549,35 @@ vec3& cube_map_normal(int i, int x, int y, int cubesize, vec3& v)
     switch (i) 
     {
         case 0:
-            v.x = 1.0f;
-            v.y = -tc;
-            v.z = -sc;
-            break;
+             v.x = 1.0f;
+             v.y = -tc;
+             v.z = -sc;
+             break;
         case 1:
-            v.x = -1.0f;
-            v.y = -tc;
-            v.z = sc;
-            break;
+             v.x = -1.0f;
+             v.y = -tc;
+             v.z = sc;
+             break;
         case 2:
-            v.x = sc;
-            v.y = 1.0f;
-            v.z = tc;
-            break;
+             v.x = sc;
+             v.y = 1.0f;
+             v.z = tc;
+             break;
         case 3:
-            v.x = sc;
-            v.y = -1.0f;
-            v.z = -tc;
-            break;
+             v.x = sc;
+             v.y = -1.0f;
+             v.z = -tc;
+             break;
         case 4:
-            v.x = sc;
-            v.y = -tc;
-            v.z = 1.0f;
-            break;
+             v.x = sc;
+             v.y = -tc;
+             v.z = 1.0f;
+             break;
         case 5:
-            v.x = -sc;
-            v.y = -tc;
-            v.z = -1.0f;
-            break;
+             v.x = -sc;
+             v.y = -tc;
+             v.z = -1.0f;
+             break;
     }
     normalize(v);
     return v;
@@ -1721,29 +1721,29 @@ void math_is_valid(float lambda)
 
 
 /************************************************************************************************
-*                                                                                               *
-*                                                                                               *
+*                                                                                                     *
+*                                                                                                     *
 *************************************************************************************************/
 
 
 // Return index of column of M containing maximum abs entry, or -1 if M=0
 int find_max_col(mat3 & M)
 {
-    float   abs, max = 0;
-    int         col = -1;
+    float    abs, max = 0;
+    int          col = -1;
 
     for (int i = 0; i < 3; ++i) 
     {
         for (int j = 0; j < 3; ++j) 
         {
-            abs = M(i,j); 
-            if (abs < 0) 
-                abs = -abs;
-            if (abs > max) 
-            {
-                max = abs; 
-                col = j;
-            }
+             abs = M(i,j); 
+             if (abs < 0) 
+                 abs = -abs;
+             if (abs > max) 
+             {
+                 max = abs; 
+                 col = j;
+             }
         }
     }
     return col;
@@ -1766,7 +1766,7 @@ void reflect_cols(mat3 &M, vec3 &u)
     {
         float s = dot(u , M.col(i));
         for (int j=0; j < 3; ++j) 
-            M(j,i) -= u[j]*s;
+             M(j,i) -= u[j]*s;
     }
 }
 // Apply Householder reflection represented by u to row vectors of M
@@ -1776,7 +1776,7 @@ void reflect_rows(mat3 & M, vec3 &u)
     {
         float s = dot(u, M[i]);
         for (int j=0; j < 3; ++j) 
-            M(i,j) -= u[j]*s;
+             M(i,j) -= u[j]*s;
     }
 }
 
@@ -1784,8 +1784,8 @@ void reflect_rows(mat3 & M, vec3 &u)
 void do_rank1(mat3 & M, mat3& Q)
 {
     vec3        v1, v2;
-    float   s;
-    int         col;
+    float    s;
+    int          col;
 
     Q = mat3_id;
     /* If rank(M) is 1, we should find a non-zero column in M */
@@ -1809,8 +1809,8 @@ void do_rank1(mat3 & M, mat3& Q)
 void do_rank2(mat3& M, mat3 &MadjT, mat3& Q)
 {
     vec3        v1, v2;
-    float   w, x, y, z, c, s, d;
-    int         col;
+    float    w, x, y, z, c, s, d;
+    int          col;
     // If rank(M) is 2, we should find a non-zero column in MadjT
     col = find_max_col(MadjT);
     if (col<0) 
@@ -1873,8 +1873,8 @@ float polar_decomp(const mat3 & M, mat3 & Q, mat3 & S)
 
         if (d == 0) 
         {
-            do_rank2(Mk, MadjTk, Mk);
-            break;
+             do_rank2(Mk, MadjTk, Mk);
+             break;
         }
 
         MadjT_one = MadjTk.norm_one(); 
@@ -1906,9 +1906,9 @@ float polar_decomp(const mat3 & M, mat3 & Q, mat3 & S)
     {
         for (int j = i; j < 3; ++j)
         {
-            x = 0.5f * (S[i][j]+S[j][i]);
-            S(i,j) = x;
-            S(j,i) = x;
+             x = 0.5f * (S[i][j]+S[j][i]);
+             S(i,j) = x;
+             S(j,i) = x;
         }
     }
     return (d);
@@ -1940,45 +1940,45 @@ vec3 & spect_decomp(vec3 & kv, mat3 & S, mat3 & U)
     {
         float sm = (fabs(OffD[X])+fabs(OffD[Y])+fabs(OffD[Z]));
         if (sm == 0) 
-            break;
+             break;
         for (int i=Z; i>=X; --i) 
         {
-            int p = nxt[i]; 
-            int q = nxt[p];
-            fabsOffDi = fabs(OffD[i]);
-            g = float(100.0)*fabsOffDi;
-            if (fabsOffDi > 0) 
-            {
-                h = Diag[q] - Diag[p];
-                fabsh = fabs(h);
-                if (fabsh+g==fabsh) 
-                {
-                    t = OffD[i]/h;
-                } 
-                else 
-                {
-                    theta = 0.5f*h/OffD[i];
-                    t = 1.0f/(fabs(theta)+sqrt(theta*theta+1.0f));
-                    if (theta < 0) 
-                        t = -t;
-                }
-                c = 1.0f/sqrt(t*t+1.0f); 
-                s = t*c;
-                tau = s/(c+1.0f);
-                ta = t*OffD[i]; 
-                OffD[i] = 0;
-                Diag[p] -= ta; 
-                Diag[q] += ta;
-                OffDq = OffD[q];
-                OffD[q] -= s*(OffD[p] + tau*OffD[q]);
-                OffD[p] += s*(OffDq   - tau*OffD[p]);
-                for (int j=Z; j>=X; --j) 
-                {
-                    a = U(j,p); b = U(j,q);
-                    U(j,p) -= s*(b + tau*a);
-                    U(j,q) += s*(a - tau*b);
-                }
-            }
+             int p = nxt[i]; 
+             int q = nxt[p];
+             fabsOffDi = fabs(OffD[i]);
+             g = float(100.0)*fabsOffDi;
+             if (fabsOffDi > 0) 
+             {
+                 h = Diag[q] - Diag[p];
+                 fabsh = fabs(h);
+                 if (fabsh+g==fabsh) 
+                 {
+                     t = OffD[i]/h;
+                 } 
+                 else 
+                 {
+                     theta = 0.5f*h/OffD[i];
+                     t = 1.0f/(fabs(theta)+sqrt(theta*theta+1.0f));
+                     if (theta < 0) 
+                          t = -t;
+                 }
+                 c = 1.0f/sqrt(t*t+1.0f); 
+                 s = t*c;
+                 tau = s/(c+1.0f);
+                 ta = t*OffD[i]; 
+                 OffD[i] = 0;
+                 Diag[p] -= ta; 
+                 Diag[q] += ta;
+                 OffDq = OffD[q];
+                 OffD[q] -= s*(OffD[p] + tau*OffD[q]);
+                 OffD[p] += s*(OffDq    - tau*OffD[p]);
+                 for (int j=Z; j>=X; --j) 
+                 {
+                     a = U(j,p); b = U(j,q);
+                     U(j,p) -= s*(b + tau*a);
+                     U(j,q) += s*(a - tau*b);
+                 }
+             }
         }
     }
     kv = Diag; 
@@ -1999,16 +1999,16 @@ quat & snuggle(quat & p, quat & q, vec3 & k)
 #define sgn(n,v)    ((n)?-(v):(v))
 #define swap(a,i,j) {a[3]=a[i]; a[i]=a[j]; a[j]=a[3];}
 #define cycle(a,p)  if (p) {a[3]=a[0]; a[0]=a[1]; a[1]=a[2]; a[2]=a[3];}\
-                    else   {a[3]=a[2]; a[2]=a[1]; a[1]=a[0]; a[0]=a[3];}
+                     else    {a[3]=a[2]; a[2]=a[1]; a[1]=a[0]; a[0]=a[3];}
     vec4 ka;
     int i, turn = -1;
     ka = k;
     if (ka[X]==ka[Y]) 
     {
         if (ka[X]==ka[Z]) 
-            turn = W; 
+             turn = W; 
         else 
-            turn = Z;
+             turn = Z;
     }
     else {if (ka[X]==ka[Z]) turn = Y; else if (ka[Y]==ka[Z]) turn = X;}
     if (turn>=0) 
@@ -2026,64 +2026,64 @@ quat & snuggle(quat & p, quat & q, vec3 & k)
         static quat q1000 = quat(1.0, 0.0, 0.0, 0.0);
         switch (turn) 
         {
-            default: 
-                return (conj(p,q));
-            case X: 
-                qtoz = qxtoz;
-                q *= qtoz; 
-                swap(ka,X,Z) 
-                break;
-            case Y: 
-                qtoz = qytoz;
-                q *= qtoz; 
-                swap(ka,Y,Z) 
-                break;
-            case Z: 
-                qtoz = q0001; 
-                break;
+             default: 
+                 return (conj(p,q));
+             case X: 
+                 qtoz = qxtoz;
+                 q *= qtoz; 
+                 swap(ka,X,Z) 
+                 break;
+             case Y: 
+                 qtoz = qytoz;
+                 q *= qtoz; 
+                 swap(ka,Y,Z) 
+                 break;
+             case Z: 
+                 qtoz = q0001; 
+                 break;
         }
         conj(q);
         mag[0] = (double)q.z*q.z+(double)q.w*q.w - 0.5;
         mag[1] = (double)q.x*q.z-(double)q.y*q.w;
         mag[2] = (double)q.y*q.z+(double)q.x*q.w;
         for (i=0; i<3; i++) 
-            if (neg[i] = (mag[i]<0.0)) 
-                mag[i] = -mag[i];
+             if (neg[i] = (mag[i]<0.0)) 
+                 mag[i] = -mag[i];
         if (mag[0]>mag[1]) 
         {
-            if (mag[0]>mag[2]) 
-                win = 0; 
-            else 
-                win = 2;
+             if (mag[0]>mag[2]) 
+                 win = 0; 
+             else 
+                 win = 2;
         }
-        else               
+        else                
         {
-            if (mag[1]>mag[2]) 
-                win = 1; 
-            else 
-                win = 2;
+             if (mag[1]>mag[2]) 
+                 win = 1; 
+             else 
+                 win = 2;
         }
         switch (win) 
         {
-            case 0: 
-                if (neg[0]) 
-                    p = q1000; 
-                else 
-                    p = q0001; 
-                break;
-            case 1: 
-                if (neg[1]) 
-                    p = qppmm; 
-                else p = qpppp; 
-                cycle(ka,0) 
-                break;
-            case 2: 
-                if (neg[2]) 
-                    p = qmpmm; 
-                else 
-                    p = qpppm; 
-                cycle(ka,1) 
-                break;
+             case 0: 
+                 if (neg[0]) 
+                     p = q1000; 
+                 else 
+                     p = q0001; 
+                 break;
+             case 1: 
+                 if (neg[1]) 
+                     p = qppmm; 
+                 else p = qpppp; 
+                 cycle(ka,0) 
+                 break;
+             case 2: 
+                 if (neg[2]) 
+                     p = qmpmm; 
+                 else 
+                     p = qpppm; 
+                 cycle(ka,1) 
+                 break;
         }
         add_quats(qp, q, p);
         t = sqrt(mag[win]+0.5);
@@ -2098,32 +2098,32 @@ quat & snuggle(quat & p, quat & q, vec3 & k)
         double all, big, two;
         qa[0] = q.x; qa[1] = q.y; qa[2] = q.z; qa[3] = q.w;
         for (i=0; i<4; i++) {
-            pa[i] = 0.0;
-            if (neg[i] = (qa[i]<0.0)) qa[i] = -qa[i];
-            par ^= neg[i];
+             pa[i] = 0.0;
+             if (neg[i] = (qa[i]<0.0)) qa[i] = -qa[i];
+             par ^= neg[i];
         }
         /* Find two largest components, indices in hi and lo */
         if (qa[0]>qa[1]) lo = 0; else lo = 1;
         if (qa[2]>qa[3]) hi = 2; else hi = 3;
         if (qa[lo]>qa[hi]) {
-            if (qa[lo^1]>qa[hi]) {hi = lo; lo ^= 1;}
-            else {hi ^= lo; lo ^= hi; hi ^= lo;}
+             if (qa[lo^1]>qa[hi]) {hi = lo; lo ^= 1;}
+             else {hi ^= lo; lo ^= hi; hi ^= lo;}
         } else {if (qa[hi^1]>qa[lo]) lo = hi^1;}
         all = (qa[0]+qa[1]+qa[2]+qa[3])*0.5;
         two = (qa[hi]+qa[lo])*math_sqrthalf;
         big = qa[hi];
         if (all>two) {
-            if (all>big) {/*all*/
-                {int i; for (i=0; i<4; i++) pa[i] = sgn(neg[i], 0.5f);}
-                cycle(ka,par)
-            } else {/*big*/ pa[hi] = sgn(neg[hi],1.0f);}
+             if (all>big) {/*all*/
+                 {int i; for (i=0; i<4; i++) pa[i] = sgn(neg[i], 0.5f);}
+                 cycle(ka,par)
+             } else {/*big*/ pa[hi] = sgn(neg[hi],1.0f);}
         } else {
-            if (two>big) {/*two*/
-                pa[hi] = sgn(neg[hi],math_sqrthalf); pa[lo] = sgn(neg[lo], math_sqrthalf);
-                if (lo>hi) {hi ^= lo; lo ^= hi; hi ^= lo;}
-                if (hi==W) {hi = "\001\002\000"[lo]; lo = 3-hi-lo;}
-                swap(ka,hi,lo)
-            } else {/*big*/ pa[hi] = sgn(neg[hi],1.0f);}
+             if (two>big) {/*two*/
+                 pa[hi] = sgn(neg[hi],math_sqrthalf); pa[lo] = sgn(neg[lo], math_sqrthalf);
+                 if (lo>hi) {hi ^= lo; lo ^= hi; hi ^= lo;}
+                 if (hi==W) {hi = "\001\002\000"[lo]; lo = 3-hi-lo;}
+                 swap(ka,hi,lo)
+             } else {/*big*/ pa[hi] = sgn(neg[hi],1.0f);}
         }
         p.x = -pa[0]; p.y = -pa[1]; p.z = -pa[2]; p.w = pa[3];
     }

@@ -19,13 +19,13 @@ class StringHashTable
 
         const char* key;
         unsigned int hash;
-        int   value;
+        int    value;
         Node* next;
     };
 
 public:
     explicit    StringHashTable(int numBuckets);
-                ~StringHashTable();
+                 ~StringHashTable();
 
     bool        Insert(const char *key, int value);
     bool        Erase(const char *key);
@@ -33,10 +33,10 @@ public:
     bool        FindValue(const char *key, int& value);
 
 private:
-    int         HashString(const char *str, unsigned int& hash);
+    int          HashString(const char *str, unsigned int& hash);
 
-    Node**      mBuckets;
-    int         mNumBuckets;
+    Node**       mBuckets;
+    int          mNumBuckets;
 
 private:
     StringHashTable(const StringHashTable&);
@@ -60,8 +60,8 @@ public:
 
     struct Slot
     {
-        Handle   handle;
-        int      refcount;
+        Handle    handle;
+        int       refcount;
         char*    name;
         void*    data;
 
@@ -71,20 +71,20 @@ public:
 
 public:
     explicit HandleTable(int capacity);
-             ~HandleTable();
+              ~HandleTable();
 
-    Slot*   AllocSlot();
+    Slot*    AllocSlot();
 
-    Slot*   AddRef(const Handle& handle);
-    Slot*   ReleaseRef(const Handle& handle);
+    Slot*    AddRef(const Handle& handle);
+    Slot*    ReleaseRef(const Handle& handle);
 
-    Slot*   FindSlot(const Handle& handle);
+    Slot*    FindSlot(const Handle& handle);
 
     int     Capacity()  { return mCapacity; }
     int     Count()     { return mCount; }
 
 private:
-    Slot*   mSlots;
+    Slot*    mSlots;
     int     mCapacity;
     int     mCount;
     int     mFirstEmptySlot;
