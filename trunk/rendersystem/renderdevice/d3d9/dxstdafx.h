@@ -68,41 +68,8 @@
 //#define STRSAFE_NO_DEPRECATE
 #pragma warning(disable : 4995)
 
-#ifndef STRSAFE_NO_DEPRECATE
-#pragma deprecated("strncpy")
-#pragma deprecated("wcsncpy")
-#pragma deprecated("_tcsncpy")
-#pragma deprecated("wcsncat")
-#pragma deprecated("strncat")
-#pragma deprecated("_tcsncat")
-#pragma deprecated("sprintf")
-#endif
 
 #include <strsafe.h>
-
-#include "..\DXUT\DXUT.h"
-#include "..\DXUTDXUTmisc.h"
-#include "..\DXUTDXUTenum.h"
-#include "..\DXUTDXUTmesh.h"
-#include "..\DXUTDXUTgui.h"
-#include "..\DXUTDXUTsettingsDlg.h"
-#include "..\DXUTDXUTSound.h"
-
-#if defined(DEBUG) | defined(_DEBUG)
-#ifndef V
-#define V(x)            { hr = x; if( FAILED(hr) ) { DXUTTrace( __FILE__, (DWORD)__LINE__, hr, L#x, true ); } }
-#endif
-#ifndef V_RETURN
-#define V_RETURN(x)    { hr = x; if( FAILED(hr) ) { return DXUTTrace( __FILE__, (DWORD)__LINE__, hr, L#x, true ); } }
-#endif
-#else
-#ifndef V
-#define V(x)            { hr = x; }
-#endif
-#ifndef V_RETURN
-#define V_RETURN(x)    { hr = x; if( FAILED(hr) ) { return hr; } }
-#endif
-#endif
 
 #ifndef SAFE_DELETE
 #define SAFE_DELETE(p)        { if(p) { delete (p);     (p)=NULL; } }

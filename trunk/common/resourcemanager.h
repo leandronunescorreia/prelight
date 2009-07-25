@@ -43,7 +43,6 @@ private:
 };
 
 
-
 template<class ResType>
 ResourceManager<ResType>::ResourceManager(int capacity /*= 1024*/)
 : mHandleTable(capacity)
@@ -131,7 +130,7 @@ const char* ResourceManager<ResType>::FindName(const Handle& handle)
 }
 
 template<class ResType>
-const ResourceManager<ResType>::Resource* ResourceManager<ResType>::FindResource(const Handle& handle)
+const typename ResourceManager<ResType>::Resource* ResourceManager<ResType>::FindResource(const Handle& handle)
 {
     HandleTable::Slot *slot = mHandleTable.FindSlot(handle);
     return static_cast<Resource*>(slot->data);

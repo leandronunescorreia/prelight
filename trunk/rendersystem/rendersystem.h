@@ -2,17 +2,19 @@
 #define _RENDERSYSTEM_H_
 
 #include <stdio.h>
+#include "./renderdevice/renderdevice.h"
 
 class RenderSystem
 {
 public:
     struct Setting
     {
-        bool fullScreen;
-        int  width, height;
+        hScreen screen;
+        bool    fullScreen;
+        int     width, height;
     };
 
-    static RenderSystem* self();
+    static RenderSystem* instance();
 private:
     RenderSystem();
 public:
@@ -28,6 +30,8 @@ protected:
 
     bool    mInited;
     Setting mSetting;
+
+    RenderDevice *mRenderDevice;
     
 };
 

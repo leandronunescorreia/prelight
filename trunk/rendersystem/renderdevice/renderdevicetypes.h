@@ -7,8 +7,10 @@
 
 struct RenderDeviceSetting
 {
-    int width, height;
-}
+    hScreen screenHandle;
+    bool    fullscreen;
+    int     width, height;
+};
 
 struct Rect
 {
@@ -96,8 +98,8 @@ enum EPixelFormat
 
 enum EResourceUsage
 {
-    RES_USAGE_DEFAULT       =    0,
-    RES_USAGE_DYNAMIC       =    1 << 0,
+    RES_USAGE_DEFAULT      =    0,
+    RES_USAGE_DYNAMIC      =    1 << 0,
     RES_USAGE_WRITEONLY    =    1 << 1,
     RES_USAGE_RENDERTARGET =    1 << 2,
     RES_USAGE_DEPTHSTENCIL =    1 << 3,
@@ -105,12 +107,23 @@ enum EResourceUsage
 
 enum ELockType
 {
-    LOCK_DEFAULT          =  LOCK_WRITE;
-    LOCK_READ             =  0;
-    LOCK_WRITE            =  1 << 0;
-    LOCK_DISCARD_WRITE    =  1 << 1;
-    LOCK_READ_AND_WRITE  =  1 << 2;
-}
+    LOCKTYPE_READ             =  0,
+    LOCKTYPE_WRITE            =  1 << 0,
+    LOCKTYPE_DISCARD_WRITE    =  1 << 1,
+    LOCKTYPE_READ_AND_WRITE   =  1 << 2,
+
+    LOCKTYPE_DEFAULT          =  LOCKTYPE_WRITE,
+};
+
+enum EPrimitiveType
+{
+    PT_TRIANGLE_LIST,
+    PT_TRIANGLE_FAN,
+    PT_TRIANGLE_STRIP,
+    PT_LINE_LIST,
+    PT_LINE_STRIP,
+    PT_POINT_LIST
+};
 
 struct Texture
 {
@@ -133,7 +146,7 @@ struct Texture
     ~Texture();  
 
     Spec          spec;
-    APITexture*  apitexture;              ///< Point to graphics API's texture resource.
+    APITexture*   apitexture;              ///< Point to graphics API's texture resource.
 };
 
 typedef Texture::Spec TextureSpec;
@@ -149,14 +162,52 @@ enum ECubeFace
     CUBE_MAX
 };
 
-enum EPrimitiveType
+
+struct Vertices
 {
-    PT_TRIANGLE_LIST,
-    PT_TRIANGLE_FAN,
-    PT_TRIANGLE_STRIP,
-    PT_LINE_LIST,
-    PT_LINE_STRIP,
-    PT_POINT_LIST
+    struct Spec
+    {
+    
+    };
 };
+
+typedef Vertices::Spec VertexBufSpec;
+
+struct RegistersMap
+{
+
+};
+
+struct IndexBuffer
+{
+    struct Spec
+    {
+    
+    };
+};
+
+typedef IndexBuffer::Spec IndexBufSpec;
+
+struct VertexShader
+{
+    struct Spec
+    {
+    
+    };
+};
+
+struct PixelShader
+{
+    struct Spec
+    {
+    
+    };
+};
+
+struct OcclusionQuery
+{
+    
+};
+
 
 #endif //_RENDERERDEVICETYPES_H_
