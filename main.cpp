@@ -2,9 +2,9 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
 {
-    if (Engine::self()->Initialize())
+    if (Engine::instance()->Initialize())
     {
-        while( Engine::self()->Update() )
+        while( Engine::instance()->Update() )
         {};
     }
     return 0;

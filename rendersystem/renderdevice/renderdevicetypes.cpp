@@ -1,4 +1,4 @@
-#include "rendererdevicetypes.h"
+#include "renderdevicetypes.h"
 #include "renderdevice.h"
 
 Texture::Spec::Spec()    
@@ -14,7 +14,6 @@ void Texture::Spec::Reset()
     mipLevels = 0;
     linear    = false;
     usage     = RES_USAGE_DEFAULT;
-    gammaCorrection = false;
 }
 
 Texture::Texture()
@@ -24,7 +23,7 @@ Texture::Texture()
 
 Texture::~Texture()
 {
-    gRenderDevice->DestroyTexture(this);
+    static RenderDevice *renderdevice = RenderDevice::instance();
+    renderdevice->DestroyTexture(this);
 }
 
-#endif //_RENDERERDEVICETYPES_H_

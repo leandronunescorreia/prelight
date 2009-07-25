@@ -1,5 +1,7 @@
+#include <stdio.h>
 #include "renderdevice.h"
 #include "texturemanager.h"
+
 
 TextureManager::TextureManager()
 : mResourceMgr(NULL)
@@ -16,7 +18,7 @@ bool TextureManager::Initialize(int capacity)
     if (NULL != mResourceMgr)
         return false;
 
-    mResourceMgr = new ResourceManager<TextureResource>(capacity);
+    mResourceMgr = new ResourceManager<Texture>(capacity);
     return true;
 }
 
@@ -30,11 +32,11 @@ bool TextureManager::Finalize()
     return true;
 }
 
-TextureManager::TextureHandle TextureManager::FindOrLoadTexture(const char *filename)
+TextureManager::hTexture TextureManager::FindOrLoadTexture(const char *filename)
 {
     assert(NULL != filename);
 
-    TextureHandle texHandle = mResourceMgr->AddRef(filename);
+    hTexture texHandle = mResourceMgr->AddRef(filename);
     if (cInvalidHandle != texHandle)
         return texHandle;    ///< Directly return the existed texture's handle after added its refcount.
 
@@ -46,8 +48,8 @@ TextureManager::TextureHandle TextureManager::FindOrLoadTexture(const char *file
     /** Load data from file to memory*/
     fseek(file, 0, SEEK_END);
     int byteSize = ftell(file);
-    char *data = new char[fileSize];
-    fseek(file, , SEEK_SET);
+    char *data = new char[byteSize];
+    fseek(file, 0, SEEK_SET);
     fread((void *)data, 1, byteSize, file);
     fclose(file);
 
@@ -63,11 +65,11 @@ TextureManager::TextureHandle TextureManager::FindOrLoadTexture(const char *file
     return texHandle;
 }
 
-TextureManager::TextureHandle TextureManager::FindOrCreateTexture(const char *name, const TextureSpec &textureSpec)
+TextureManager::hTexture TextureManager::FindOrCreateTexture(const char *name, const TextureSpec &spec)
 {
     assert(NULL != name);
 
-    TextureHandle texHandle = mResourceMgr->AddRef(name);
+    hTexture texHandle = mResourceMgr->AddRef(name);
     if (cInvalidHandle != texHandle)
         return texHandle;    ///< Directly return the existed texture's handle after added its refcount.
 
@@ -79,15 +81,15 @@ TextureManager::TextureHandle TextureManager::FindOrCreateTexture(const char *na
 }
 
 
-TextureManager::TextureHandle TextureManager::FindTexture(const char *name)
+TextureManager::hTexture TextureManager::FindTexture(const char *name)
 {
     assert(NULL != name);
 
-    TextureHandle texHandle = mResourceMgr->AddRef(name);
-    return texhandle;
+    hTexture texHandle = mResourceMgr->AddRef(name);
+    return texHandle;
 }
 
-bool TextureManager::ReleaseTexture(TextureHandle & handle)
+bool TextureManager::ReleaseTexture(hTexture & handle)
 {
     bool destroyed = mResourceMgr->ReleaseRef(handle);
     if (destroyed)
@@ -95,9 +97,9 @@ bool TextureManager::ReleaseTexture(TextureHandle & handle)
     return destroyed;
 }
 
-const TextureSpec* TextureManager::GetTextureSpec(const TextureHandle& handle)
+const TextureSpec* TextureManager::GetTextureSpec(const hTexture& handle)
 {
-    Texture *texture = mResourceMgr->FindResource(handle);
+    const Texture *texture = mResourceMgr->FindResource(handle);
     return &texture->spec;
 }
 
