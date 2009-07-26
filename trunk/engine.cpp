@@ -1,6 +1,15 @@
 #include "stdafx_pch.h"
 #include "engine.h"
 
+/** 
+multimon.h is a stub module that fakes multiple monitor apis on Win32 OSes without them.
+Only once source file should #define COMPILE_MULTIMON_STUBS
+*/
+#ifdef WIN32
+#define COMPILE_MULTIMON_STUBS
+#include <multimon.h> 
+#endif
+
 Engine* Engine::engineInstance = NULL;
 
 Engine::Engine()
@@ -107,8 +116,8 @@ bool Engine::InitializeScreen()
     {
         exstyle = WS_EX_TOPMOST;
         x = y = 0;
-        width = ::GetSystemMetrics(SM_CXSCREEN);
-        height = ::GetSystemMetrics(SM_CYSCREEN);
+        width = GetSystemMetrics(SM_CXSCREEN);
+        height = GetSystemMetrics(SM_CYSCREEN);
     }
     else
     {

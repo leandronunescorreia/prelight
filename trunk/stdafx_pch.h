@@ -7,6 +7,7 @@ Include core header files in this file to optimize compiler performance.
 
 #include <stdio.h>
 #include <assert.h>
-#include <windows.h>
+#include <Windows.h>
+#include <Winuser.h>
 #include <WinNT.h>
 #include <WinDef.h>
