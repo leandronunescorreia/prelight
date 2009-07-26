@@ -61,8 +61,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="dxerr9.lib d3dx9d.lib d3d9.lib d3dxof.lib dxguid.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comctl32.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib DXUT_d.lib"
-				AdditionalLibraryDirectories=".\lib"
+				AdditionalDependencies="dxerr9.lib d3dx9d.lib d3d9.lib d3dxof.lib dxguid.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comctl32.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib"
+				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>
@@ -135,7 +135,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="dxerr9.lib d3dx9.lib d3d9.lib d3dxof.lib dxguid.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comctl32.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib DXUT.lib"
+				AdditionalDependencies="dxerr9.lib d3dx9.lib d3d9.lib d3dxof.lib dxguid.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comctl32.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib"
 				AdditionalLibraryDirectories=".\lib"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
@@ -209,20 +209,6 @@
 				<File
 					RelativePath=".\rendersystem\renderdevice\renderdevice.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\rendersystem\renderdevice\renderdevice.h"
@@ -245,20 +231,6 @@
 				<File
 					RelativePath=".\rendersystem\renderdevice\renderdevicetypes.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\rendersystem\renderdevice\renderdevicetypes.h"
@@ -281,20 +253,6 @@
 				<File
 					RelativePath=".\rendersystem\renderdevice\texturemanager.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\rendersystem\renderdevice\texturemanager.h"
@@ -358,22 +316,16 @@
 					Name="d3d9"
 					>
 					<File
+						RelativePath=".\rendersystem\renderdevice\d3d9\apibridge.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\rendersystem\renderdevice\d3d9\apibridge.h"
+						>
+					</File>
+					<File
 						RelativePath=".\rendersystem\renderdevice\d3d9\dxstdafx.cpp"
 						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\rendersystem\renderdevice\d3d9\dxstdafx.h"
@@ -390,25 +342,6 @@
 							>
 							<Tool
 								Name="VCCustomBuildTool"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath=".\rendersystem\renderdevice\d3d9\renderdevice_d3d9.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							ExcludedFromBuild="true"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
 					</File>

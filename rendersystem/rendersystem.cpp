@@ -30,13 +30,13 @@ bool RenderSystem::Initialize(const RenderSystem::Setting& setting)
     mRenderDevice = RenderDevice::instance();
     if (isOk)
     {
-        RenderDevice::Setting setting = 
-        { 
-            mSetting.screen, 
-            mSetting.fullScreen, 
-            mSetting.width, 
-            mSetting.height 
-        };
+        RenderDevice::Setting setting = { 
+                                            mSetting.screen, 
+                                            mSetting.fullScreen, 
+                                            mSetting.width, 
+                                            mSetting.height 
+                                        };
+
         isOk = mRenderDevice->Initialize(setting);
     }
 

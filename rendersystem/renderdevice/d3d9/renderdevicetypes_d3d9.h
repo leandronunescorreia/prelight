@@ -1,13 +1,13 @@
-#if 1
+#ifndef _RENDERDEVICETYPES_D3D9_H_
+#define _RENDERDEVICETYPES_D3D9_H_
+
 #include "dxstdafx.h"
 
-typedef IDirect3DBaseTexture9    APITexture;
+typedef IDirect3D9               APIInterface;
 typedef IDirect3DDevice9         APIRenderDevice;
+typedef IDirect3DBaseTexture9    APITexture;
+
 
 typedef HWND                     hScreen;
-#else
-typedef void*    APITexture;
-typedef void*    APIRenderDevice;
 
-typedef void*    hScreen;
-#endif
+#endif //_RENDERDEVICETYPES_D3D9_H_

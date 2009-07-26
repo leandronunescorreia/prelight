@@ -1,8 +1,8 @@
 #include "renderdevice.h"
+#include "./d3d9/apibridge.h"
 
 
 RenderDevice RenderDevice::renderdeviceInstance;
-
 RenderDevice* gRenderDevice = RenderDevice::instance();
 
 RenderDevice::RenderDevice()
@@ -30,7 +30,7 @@ bool  RenderDevice::Initialize(const RenderDevice::Setting &setting)
     mBeginRenderCount = 0;
     
     if (isOk)
-        isOk = API_Initialize(mSetting);
+        isOk = APIBridge::Initialize(mSetting);
 
     if (isOk)
         isOk = mTextureManager.Initialize(1024);
@@ -48,7 +48,7 @@ bool  RenderDevice::Initialize(const RenderDevice::Setting &setting)
 bool RenderDevice::Finalize()
 {
     mTextureManager.Finalize();
-    API_Finalize();
+    APIBridge::Finalize();
 
     mInited = false;
     return true;
@@ -62,7 +62,7 @@ inline const RenderDevice::Setting& RenderDevice::GetSetting()
 
 bool  RenderDevice::ChangeSetting(const RenderDevice::Setting &setting)
 {
-    if (!API_ChangeSetting(setting))
+    if (!APIBridge::ChangeSetting(setting))
         return false;
 
     mSetting = setting;
@@ -74,7 +74,7 @@ bool  RenderDevice::BeginRender()
 {
     if (0 == mBeginRenderCount)
     {
-        if (!API_BeginRender())
+        if (!APIBridge::BeginRender())
              return false;
     }
 
@@ -89,7 +89,7 @@ bool RenderDevice::EndRender()
 
     if (1 == mBeginRenderCount)
     {
-        API_EndRender();
+        APIBridge::EndRender();
     }
 
     mBeginRenderCount--;
@@ -98,13 +98,13 @@ bool RenderDevice::EndRender()
 
 void  RenderDevice::Clear(const unsigned int *color, const float *depth, const int *stencil, const Rect *rect /*= 0*/, unsigned int rectcount /*= 0*/)
 {
-    API_Clear(color, depth, stencil, rect, rectcount);
+    APIBridge::Clear(color, depth, stencil, rect, rectcount);
 }
 
 void  RenderDevice::SwapBuffers()
 {
     assert(0 == mBeginRenderCount);
-    API_SwapBuffers();
+    APIBridge::SwapBuffers();
 }
     
 /** RenderStates accessor functions*/ 
@@ -113,7 +113,7 @@ void  RenderDevice::SetColorWrite(bool write)
 {
     if (write != mRenderStates.mColorWrite)
     {
-        API_SetColorWrite(write);
+        APIBridge::SetColorWrite(write);
         mRenderStates.mColorWrite = write;
     }
 }
@@ -122,7 +122,7 @@ void  RenderDevice::SetFillMode(EFillMode fillMode)
 {
     if (fillMode != mRenderStates.mFillMode)
     {
-        API_SetFillMode(fillMode);
+        APIBridge::SetFillMode(fillMode);
         mRenderStates.mFillMode = fillMode;
     }
 }
@@ -131,7 +131,7 @@ void  RenderDevice::SetFaceCull(EFaceCull faceCull)
 {
     if (faceCull != mRenderStates.mFaceCull)
     {
-        API_SetFaceCull(faceCull);
+        APIBridge::SetFaceCull(faceCull);
         mRenderStates.mFaceCull = faceCull;
     }
 }
@@ -140,7 +140,7 @@ void  RenderDevice::SetAlphaTest(float alpha)
 {
     if (alpha != mRenderStates.mAlphaTestValue)
     {
-        API_SetAlphaTest(alpha);
+        APIBridge::SetAlphaTest(alpha);
         mRenderStates.mAlphaTestValue = alpha;
     }
 }
@@ -149,7 +149,7 @@ void  RenderDevice::SetBlendFactor(EBlendFactor srcFactor, EBlendFactor destFact
 {
     if (srcFactor != mRenderStates.mSrcBlendFactor || destFactor != mRenderStates.mDestBlendFactor)
     {
-        API_SetBlendFactor(srcFactor, destFactor);
+        APIBridge::SetBlendFactor(srcFactor, destFactor);
         mRenderStates.mSrcBlendFactor = srcFactor;
         mRenderStates.mDestBlendFactor = destFactor;
     }
@@ -159,7 +159,7 @@ void  RenderDevice::SetDepthFunc(ECompareFunc compareFunc)
 {
     if (compareFunc != mRenderStates.mDepthFunc)
     {
-        API_SetDepthFunc(compareFunc);
+        APIBridge::SetDepthFunc(compareFunc);
         mRenderStates.mDepthFunc = compareFunc;
     }
 }
@@ -168,7 +168,7 @@ void  RenderDevice::SetDepthWrite(bool write)
 {
     if (write != mRenderStates.mDepthWrite)
     {
-        API_SetDepthWrite(write);
+        APIBridge::SetDepthWrite(write);
         mRenderStates.mDepthWrite = write;
     }
 }
@@ -177,7 +177,7 @@ void  RenderDevice::SetStencilFunc(ECompareFunc compareFunc, int ref, int mask)
 {
     if (compareFunc != mRenderStates.mStencilFunc || ref != mRenderStates.mStencilRef || mask != mRenderStates.mStencilMask)
     {
-        API_SetStencilFunc(compareFunc, ref, mask);
+        APIBridge::SetStencilFunc(compareFunc, ref, mask);
         mRenderStates.mStencilFunc = compareFunc;
         mRenderStates.mStencilRef = ref;
         mRenderStates.mStencilMask = mask;
@@ -188,7 +188,7 @@ void  RenderDevice::SetStencilWriteMask(int mask)
 {
     if (mask != mRenderStates.mStencilWriteMask)
     {
-        API_SetStencilWriteMask(mask);
+        APIBridge::SetStencilWriteMask(mask);
         mRenderStates.mStencilWriteMask = mask;
     }
 }
@@ -197,7 +197,7 @@ void  RenderDevice::SetStencilOp(EStencilOP fail, EStencilOP zfail, EStencilOP z
 {
     if (fail != mRenderStates.mStencilFailOP || zfail != mRenderStates.mStencilZFailOP || zpass != mRenderStates.mStencilZPassOP)
     {
-        API_SetStencilOp(fail, zfail, zpass);
+        APIBridge::SetStencilOp(fail, zfail, zpass);
         mRenderStates.mStencilFailOP = fail;
         mRenderStates.mStencilZFailOP = zfail;
         mRenderStates.mStencilZPassOP = zpass;
@@ -210,20 +210,20 @@ void  RenderDevice::SetStencilOp(EStencilOP fail, EStencilOP zfail, EStencilOP z
 void  RenderDevice::SetSamplerTexture(int idx, const Texture *texture)
 {
     assert(idx < MAX_TEXTURE_SAMPLERS && idx >= 0);
-    API_SetSamplerTexture(idx, texture);
+    APIBridge::SetSamplerTexture(idx, texture);
 }
 
 /** Set color texture as rendertarget*/
 void  RenderDevice::SetRenderTarget(int idx, Texture *texture)
 {
     assert(idx < MAX_RENDERTARGETS && idx >= 0);
-    API_SetRenderTarget(idx, texture);
+    APIBridge::SetRenderTarget(idx, texture);
 }
 
 /** Set depth texture as rendertarget's depth buffer*/
 void  RenderDevice::SetDepthStencilTexture(Texture *texture)
 {
-    API_SetDepthStencilTexture(texture);
+    APIBridge::SetDepthStencilTexture(texture);
 }
 
 
@@ -231,27 +231,27 @@ void  RenderDevice::SetDepthStencilTexture(Texture *texture)
 //@{
 Texture* RenderDevice::CreateTexture(const TextureSpec &spec)
 {
-    return API_CreateTexture(spec);
+    return APIBridge::CreateTexture(spec);
 }
 
 Texture* RenderDevice::CreateTexture(const void *data, int byteSize)
 {
-    return API_CreateTexture(data, byteSize);
+    return APIBridge::CreateTexture(data, byteSize);
 }
 
 bool     RenderDevice::DestroyTexture(Texture *texture)
 {
-    return API_DestroyTexture(texture);
+    return APIBridge::DestroyTexture(texture);
 }
           
 void*    RenderDevice::LockTexture(Texture *texture, int mipLevel, ELockType lockType, int *pitch /*= 0*/)
 {
-    return API_LockTexture(texture, mipLevel, lockType, pitch);
+    return APIBridge::LockTexture(texture, mipLevel, lockType, pitch);
 }
 
 void     RenderDevice::UnlockTexture(Texture *texture, int mipLevel)
 {
-    API_UnlockTexture(texture, mipLevel);
+    APIBridge::UnlockTexture(texture, mipLevel);
 }
 
 //@}     
@@ -473,5 +473,5 @@ void RenderDevice::SetCursorPosition(int x, int y)
                  
 APIRenderDevice* RenderDevice::GetAPIRenderDevice()
 {
-    return mAPIRenderDevice;
+    return APIBridge::GetAPIRenderDevice();
 }
