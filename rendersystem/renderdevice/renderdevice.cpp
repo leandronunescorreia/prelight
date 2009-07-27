@@ -96,9 +96,9 @@ bool RenderDevice::EndRender()
     return true;
 }
 
-void  RenderDevice::Clear(const unsigned int *color, const float *depth, const int *stencil, const Rect *rect /*= 0*/, unsigned int rectcount /*= 0*/)
+void  RenderDevice::Clear(const unsigned int *color, const float *depth, const int *stencil)
 {
-    APIBridge::Clear(color, depth, stencil, rect, rectcount);
+    APIBridge::Clear(color, depth, stencil);
 }
 
 void  RenderDevice::SwapBuffers()

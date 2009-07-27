@@ -46,7 +46,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderThrough="stdafx_pch.h"
+				PrecompiledHeaderThrough=""
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -119,8 +119,8 @@
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_D3D9"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="stdafx_pch.h"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderThrough=""
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -195,6 +195,54 @@
 		<Filter
 			Name="rendersystem"
 			>
+			<File
+				RelativePath=".\rendersystem\console.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\rendersystem\console.h"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\rendersystem\renderpath.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\rendersystem\renderpath.h"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+			</File>
 			<File
 				RelativePath=".\rendersystem\rendersystem.cpp"
 				>
@@ -324,10 +372,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\rendersystem\renderdevice\d3d9\dxstdafx.cpp"
-						>
-					</File>
-					<File
 						RelativePath=".\rendersystem\renderdevice\d3d9\dxstdafx.h"
 						>
 						<FileConfiguration
@@ -402,11 +446,7 @@
 			>
 		</File>
 		<File
-			RelativePath=".\stdafx_pch.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\stdafx_pch.h"
+			RelativePath=".\stdafx.h"
 			>
 		</File>
 	</Files>
