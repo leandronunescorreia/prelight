@@ -1,4 +1,3 @@
-#include "stdafx_pch.h"
 #include "engine.h"
 
 /** 
@@ -20,7 +19,7 @@ Engine::Engine()
 {
 #ifdef WIN32
     mWindowClassName = (LPCWSTR)L"Deferred-Lighting renderer";
-    mWindowTitle = (LPCWSTR)L"Deferred-Lighting render demo";
+    mWindowTitle     = (LPCWSTR)L"Deferred-Lighting render demo";
 #endif
 }
 
@@ -76,6 +75,20 @@ bool Engine::Update()
     if (!UpdateSystemMessage())
         return false;
     
+    static float f = 0.0f; 
+    f += 0.1f;
+    int i = (int)f;
+    i &= 0xff;
+    unsigned int color = (i << 16) | (i << 8) | i;
+    if (f >= 255.f)
+        f = 0.0f;
+    float depth = 1.0f;
+    int stencil = 0;
+    RenderDevice::instance()->Clear(&color, &depth, &stencil);
+
+
+    RenderDevice::instance()->SwapBuffers();
+
     return true;
 }
 

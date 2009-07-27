@@ -35,6 +35,23 @@ struct RenderStates
     EStencilOP   mStencilFailOP, mStencilZFailOP, mStencilZPassOP;
 };
 
+
+/**
+/class RenderDevice
+RenderDevice hidden differents for different Graphics APIs (e.g. DirectX, XBOX 360 DirectX, OpenGL).
+All GPU commands should be called through it.
+
+RenderDevice can create some resources are called kernel resources.
+-texture (normal textures, rendertargets)
+-shader (vertex shader, pixel shader)
+-vertex buffer
+-index buffer
+
+RenderDevice can creat them but doesn't manage them. 
+RenderDevice has references to TextureManager, ShaderManager, VerticesManager, IndicesManager class instance.
+These classes implement resouces management all these kernel resources, and hide their but expose handle of them.
+*/
+
 class RenderDevice
 {
     friend class  TextureManager;
@@ -64,8 +81,13 @@ public:
 
     bool    BeginRender();
     bool    EndRender();
-           
-    void    Clear(const unsigned int *color, const float *depth, const int *stencil, const Rect *rect = 0, unsigned int rectcount = 0);
+    
+    /**
+    Doesn't support sub-rects clear. It's useless.
+    And entire depth & stencil buffer clear is much faster and will save bandwidth becasue Z compression.
+    If you really need sub-rects clear, you should use other ways and carefully plan these operations.
+    */
+    void    Clear(const unsigned int *color, const float *depth, const int *stencil);
     void    SwapBuffers();
            
     /** RenderStates accessor functions*/ 

@@ -1,9 +1,13 @@
 #ifndef _ENGINE_H_
 #define _ENGINE_H_
 
-#include "stdafx_pch.h"
+#include "stdafx.h"
 #include "./rendersystem/rendersystem.h"
 
+/**
+\class Engine
+
+*/
 class Engine
 {
 public:

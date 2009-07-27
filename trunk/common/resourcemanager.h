@@ -22,19 +22,19 @@ public:
     ResourceManager(int capacity = 1024);
     ~ResourceManager();
 
-    Handle AddResource(const char* name, Resource* res);
+    Handle  AddResource(const char* name, Resource* res);
 
-    Handle AddRef(const char* name);
+    Handle  AddRef(const char* name);
     bool    ReleaseRef(const Handle& handle);
 
-    const char* FindName(const Handle& handle);
+    const char*     FindName(const Handle& handle);
     const Resource* FindResource(const Handle& handle);
 
-    int Capacity()       { return mHandleTable->Capacity();  }
+    int Capacity()      { return mHandleTable->Capacity();  }
     int ResourceCount() { return mHandleTable->Count();     }
 
 private:
-    HandleTable          mHandleTable;
+    HandleTable         mHandleTable;
     StringHashTable     mNameTable;
 
 private:
