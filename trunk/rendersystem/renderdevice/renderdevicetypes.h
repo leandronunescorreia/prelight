@@ -5,6 +5,7 @@
 #include "./d3d9/renderdevicetypes_d3d9.h"
 #endif
 
+
 struct RenderDeviceSetting
 {
     hScreen screenHandle;
@@ -21,7 +22,20 @@ struct Rect
 };
 
 
-/** Render states' value types*/
+/** 
+Render states' types
+
+Many enum type states use the same integer value with api's format, then we don't need 
+frequently convert it to api's format value at runtime. 
+
+/remark The problem is we will have different enum value for different api.
+If we want save states for different graphic api using, we should save string 
+or at least enum value's index. 
+
+FIX ME: Consider using macros to define enum and string array at same time and 
+        keep them consistent.
+*/
+
 //@{
 enum EFaceCull
 {
@@ -72,37 +86,37 @@ enum EStencilOP
     STENCIL_DECR,
     STENCIL_INVERT
 };
-
 //@}
 
 enum EPixelFormat
 {
-    FMT_UNKNOWN,
+    FMT_UNKNOWN       = API_FMT_UNKNOW,
 
-    FMT_A8R8G8B8,
-    FMT_X8R8G8B8,
+    FMT_A8R8G8B8      = API_FMT_A8R8G8B8,
+    FMT_X8R8G8B8      = API_FMT_X8R8G8B8,
 
-    FMT_DXT1,
-    FMT_DXT3,
-    FMT_DXT5,
+    FMT_DXT1          = API_FMT_DXT1,
+    FMT_DXT3          = API_FMT_DXT3,
+    FMT_DXT5          = API_FMT_DXT5,
 
-    FMT_D24S8,
-    FMT_D24X8,
+    FMT_D24S8         = API_FMT_D24S8,
+    FMT_D24X8         = API_FMT_D24X8,
 
-    FMT_R16F,
-    FMT_R32F,
-    FMT_G16R16F,
-    FMT_A16B16G16R16F,
-    FMT_A32B32G32R32F,
+    FMT_R16F          = API_FMT_R16F,
+    FMT_R32F          = API_FMT_R32F,
+    FMT_G16R16F       = API_FMT_G16R16F,
+    FMT_A16B16G16R16F = API_FMT_A16B16G16R16F,
+    FMT_A32B32G32R32F = API_FMT_A32B32G32R32F,
 };
+
 
 enum EResourceUsage
 {
-    RES_USAGE_DEFAULT      =    0,
-    RES_USAGE_DYNAMIC      =    1 << 0,
-    RES_USAGE_WRITEONLY    =    1 << 1,
-    RES_USAGE_RENDERTARGET =    1 << 2,
-    RES_USAGE_DEPTHSTENCIL =    1 << 3,
+    RES_USAGE_DEFAULT      = API_USAGE_DEFAULT,
+    RES_USAGE_DYNAMIC      = API_USAGE_DYNAMIC,
+    RES_USAGE_WRITEONLY    = API_USAGE_WRITEONLY,
+    RES_USAGE_RENDERTARGET = API_USAGE_RENDERTARGET,
+    RES_USAGE_DEPTHSTENCIL = API_USAGE_DEPTHSTENCIL,
 };
 
 enum ELockType
@@ -111,7 +125,6 @@ enum ELockType
     LOCKTYPE_WRITE            =  1 << 0,
     LOCKTYPE_DISCARD_WRITE    =  1 << 1,
     LOCKTYPE_READ_AND_WRITE   =  1 << 2,
-
     LOCKTYPE_DEFAULT          =  LOCKTYPE_WRITE,
 };
 
@@ -129,14 +142,11 @@ struct Texture
 {
     struct Spec
     {
-        EPixelFormat format;
-
-        int  width;
-        int  height;
-        int  mipLevels;
-        bool linear;
-        int  usage;
-        bool gamaCorrection;
+        EPixelFormat    format;
+        EResourceUsage  usage;
+        int             width;
+        int             height;
+        int             mipLevels;
 
         Spec();
         void Reset();

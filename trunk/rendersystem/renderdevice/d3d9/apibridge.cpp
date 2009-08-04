@@ -7,7 +7,13 @@ static UINT              adapter    = D3DADAPTER_DEFAULT;
 static D3DDEVTYPE        deviceType = D3DDEVTYPE_HAL;
 static D3DPRESENT_PARAMETERS d3dpp;
 
+/**
+Forward declaration of utility functions and data.
+*/
+//@{
 
+
+//@}
 
 APIRenderDevice* APIBridge::GetAPIRenderDevice()
 {
@@ -237,7 +243,26 @@ Texture* APIBridge::CreateTexture(const TextureSpec &spec)
 
 Texture* APIBridge::CreateTexture(const void *data, int byteSize)
 {
-    return NULL;
+    IDirect3DTexture9 *d3dTexture = NULL;
+    /** The created d3dTexture is located in managed pool.*/
+    if (D3D_OK != D3DXCreateTextureFromFileInMemory(d3dDevice, data, byteSize, &d3dTexture))
+        return NULL;
+
+    Texture *texture = new Texture;
+    texture->apitexture = d3dTexture;
+
+    /** Get d3d texture's attributes, copy them to texture spec.*/
+    D3DSURFACE_DESC desc;
+    d3dTexture->GetLevelDesc(0, &desc);
+
+    Texture::Spec& spec = texture->spec;
+    spec.format = static_cast<EPixelFormat>(desc.Format);
+    spec.usage = static_cast<EResourceUsage>(desc.Usage);
+    spec.width = desc.Width;
+    spec.height = desc.Height;
+    spec.mipLevels = d3dTexture->GetLevelCount();
+
+    return texture;
 }
 
 bool APIBridge::DestroyTexture(Texture *texture)
@@ -466,3 +491,10 @@ void APIBridge::SetCursorPosition(int x, int y)
 {
 
 }
+
+
+/**Definition of utility functions and data*/
+//@{
+
+
+//@}

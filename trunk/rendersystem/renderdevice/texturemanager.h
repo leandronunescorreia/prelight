@@ -14,8 +14,11 @@ public:
     typedef ResourceManager<Texture>::Handle hTexture;
     static const hTexture cInvalidHandle = ResourceManager<Texture>::cInvalidHandle;
 
-    bool Initialize(int capacity);
-    bool Finalize();
+    /**
+    /param capacity is the maximum texture count can exists in TextureManager.
+    */
+    bool        Initialize(int capacity);
+    bool        Finalize();
 
     /** Find a texture by name, load a new texture from disk if this name doesn't exist.*/
     hTexture	FindOrLoadTexture(const char *filename);
@@ -27,10 +30,10 @@ public:
     hTexture    FindTexture(const char *name);
 
     /** Decrease texture's refcount. Set \param handle to invalid texture handle.*/
-    bool           ReleaseTexture(hTexture& handle);
+    bool        ReleaseTexture(hTexture& handle);
 
     /** Reload texture from disk without change texture's refcount.*/
-	bool	        ReloadTexture(Texture texture);
+	bool	    ReloadTexture(Texture texture);
 
     /** Get texture's handle.*/
     const TextureSpec*  GetTextureSpec(const hTexture& handle);
