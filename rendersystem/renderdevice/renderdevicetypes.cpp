@@ -12,7 +12,6 @@ void Texture::Spec::Reset()
     width  = 0;
     height = 0;
     mipLevels = 0;
-    linear    = false;
     usage     = RES_USAGE_DEFAULT;
 }
 
