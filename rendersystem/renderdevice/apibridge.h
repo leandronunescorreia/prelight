@@ -57,10 +57,10 @@ public:
 
     /** Vertex buffer functions*/
     //@{
-    static Vertices*       CreateVertices(int vertexCount, int vertexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-    static void            DestroyVertices(Vertices *vbuf);
-    static void*           LockVertices(Vertices *vbuf, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCKTYPE_WRITE);
-    static void            UnlockVertices(Vertices *vbuf);
+    static Vertices*       CreateVertices(const Vertices::Spec& spec);
+    static void            DestroyVertices(Vertices *vertices);
+    static void*           LockVertices(Vertices *vertices, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCKTYPE_WRITE);
+    static void            UnlockVertices(Vertices *vertices);
     //@}            
 
     /** Stream functions*/

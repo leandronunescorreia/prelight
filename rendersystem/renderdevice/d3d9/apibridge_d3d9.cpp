@@ -243,6 +243,8 @@ Texture* APIBridge::CreateTexture(const Texture::Spec &spec)
 
 Texture* APIBridge::CreateTexture(const void *data, int byteSize)
 {
+    assert(d3dDevice);
+
     IDirect3DTexture9 *d3dTexture = NULL;
     /** The created d3dTexture is located in managed pool.*/
     if (D3D_OK != D3DXCreateTextureFromFileInMemory(d3dDevice, data, byteSize, &d3dTexture))
@@ -267,6 +269,13 @@ Texture* APIBridge::CreateTexture(const void *data, int byteSize)
 
 bool APIBridge::DestroyTexture(Texture *texture)
 {
+#ifdef _DEBUG
+    ULONG d3dRefCount = texture->apitexture->Release();
+    assert(0 == d3dRefCount);
+#else
+    texture->apitexture->Release();
+#endif
+    
     return true;
 }
       
@@ -285,22 +294,37 @@ void APIBridge::UnlockTexture(Texture *texture, int mipLevel)
 
 /** Vertex buffer functions*/
 //@{
-Vertices* APIBridge::CreateVertices(int vertexCount, int vertexStride, EResourceUsage usage /*= RES_USAGE_WRITEONLY*/)
+Vertices* APIBridge::CreateVertices(const Vertices::Spec& spec)
+{
+    assert(d3dDevice);
+
+    IDirect3DVertexBuffer9 *d3dVertexBuffer = NULL;
+    if (D3D_OK != d3dDevice->CreateVertexBuffer(spec.length, spec.usage, 0, D3DPOOL_MANAGED, &d3dVertexBuffer, NULL))
+        return NULL;
+    
+    Vertices *vertices = new Vertices();
+    vertices->apivertices = d3dVertexBuffer;
+    vertices->spec = spec;
+    
+    return vertices;
+}
+
+void APIBridge::DestroyVertices(Vertices *vertices)
+{
+#ifdef _DEBUG
+    ULONG d3dRefCount = vertices->apivertices->Release();
+    assert(0 == d3dRefCount);
+#else
+    vertices->apivertices->Release();
+#endif
+}
+
+void* APIBridge::LockVertices(Vertices *vertices, int firstVertex /*= 0*/, int numVertices /*= 0*/, ELockType lockType /*= LOCKTYPE_WRITE*/)
 {
     return NULL;
 }
 
-void APIBridge::DestroyVertices(Vertices *vbuf)
-{
-
-}
-
-void* APIBridge::LockVertices(Vertices *vbuf, int firstVertex /*= 0*/, int numVertices /*= 0*/, ELockType lockType /*= LOCKTYPE_WRITE*/)
-{
-    return NULL;
-}
-
-void APIBridge::UnlockVertices(Vertices *vbuf)
+void APIBridge::UnlockVertices(Vertices *vertices)
 {
 
 }
@@ -495,6 +519,5 @@ void APIBridge::SetCursorPosition(int x, int y)
 
 /**Definition of utility functions and data*/
 //@{
-
 
 //@}
