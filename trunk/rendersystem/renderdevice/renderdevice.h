@@ -156,10 +156,10 @@ protected:
 
     /** Vertex buffer functions*/
     //@{
-    Vertices*           CreateVertices(int vertexCount, int vertexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-    void                DestroyVertices(Vertices *vbuf);
-    void*               LockVertices(Vertices *vbuf, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCKTYPE_WRITE);
-    void                UnlockVertices(Vertices *vbuf);
+    Vertices*           CreateVertices(const Vertices::Spec& spec);
+    void                DestroyVertices(Vertices *vertices);
+    void*               LockVertices(Vertices *vertices, int firstVertex = 0, int numVertices = 0, ELockType lockType = LOCKTYPE_WRITE);
+    void                UnlockVertices(Vertices *vertices);
     //@}                
 
     /** Stream functions*/

@@ -42,7 +42,7 @@ VerticesManager::hVertices VerticesManager::CreateVertices(const char *name, con
     if (cInvalidHandle != verticesHandle)
         return verticesHandle;    ///< Directly return the existed vertices's handle after added its refcount.
 
-    Vertices *vertices = renderDevice->CreateVertices(spec.length, spec.stride, spec.usage);
+    Vertices *vertices = renderDevice->CreateVertices(spec);
     if (NULL == vertices)
         return cInvalidHandle;
     verticesHandle = mResourceMgr->AddResource(name, vertices);

@@ -259,22 +259,22 @@ void     RenderDevice::UnlockTexture(Texture *texture, int mipLevel)
 
 /** Vertex buffer functions*/
 //@{
-Vertices* RenderDevice::CreateVertices(int vertexCount, int vertexStride, EResourceUsage usage /*= RES_USAGE_WRITEONLY*/)
+Vertices* RenderDevice::CreateVertices(const Vertices::Spec& spec)
+{
+    return APIBridge::CreateVertices(spec);
+}
+
+void  RenderDevice::DestroyVertices(Vertices *vertices)
+{
+    APIBridge::DestroyVertices(vertices);
+}
+
+void* RenderDevice::LockVertices(Vertices *vertices, int firstVertex /*= 0*/, int numVertices /*= 0*/, ELockType lockType /*= LOCKTYPE_WRITE*/)
 {
     return NULL;
 }
 
-void  RenderDevice::DestroyVertices(Vertices *vbuf)
-{
-    
-}
-
-void* RenderDevice::LockVertices(Vertices *vbuf, int firstVertex /*= 0*/, int numVertices /*= 0*/, ELockType lockType /*= LOCKTYPE_WRITE*/)
-{
-    return NULL;
-}
-
-void RenderDevice::UnlockVertices(Vertices *vbuf)
+void RenderDevice::UnlockVertices(Vertices *vertices)
 {
 
 }
