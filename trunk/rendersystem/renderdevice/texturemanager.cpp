@@ -4,7 +4,8 @@
 
 
 TextureManager::TextureManager()
-: mResourceMgr(NULL)
+: renderDevice(NULL)
+, mResourceMgr(NULL)
 {
 }
 
@@ -18,18 +19,22 @@ bool TextureManager::Initialize(int capacity)
     if (NULL != mResourceMgr)
         return false;
 
+    renderDevice = RenderDevice::instance();
+
     mResourceMgr = new ResourceManager<Texture>(capacity);
+
     return true;
 }
 
-bool TextureManager::Finalize()
+void TextureManager::Finalize()
 {
-    if (NULL == mResourceMgr)
-        return false;
+    if (NULL != mResourceMgr)
+    {
+        delete mResourceMgr;
+        mResourceMgr = NULL;
+    }
 
-    delete mResourceMgr;
-    mResourceMgr = NULL;
-    return true;
+    renderDevice = NULL;
 }
 
 TextureManager::hTexture TextureManager::FindOrLoadTexture(const char *filename)
@@ -54,7 +59,7 @@ TextureManager::hTexture TextureManager::FindOrLoadTexture(const char *filename)
     fclose(file);
 
     /** Call RenderDevice class interface to create Texture.*/
-    Texture *texture = gRenderDevice->CreateTexture(data, byteSize);
+    Texture *texture = renderDevice->CreateTexture(data, byteSize);
     delete [] data;
 
     if (NULL == texture)
@@ -65,7 +70,7 @@ TextureManager::hTexture TextureManager::FindOrLoadTexture(const char *filename)
     return texHandle;
 }
 
-TextureManager::hTexture TextureManager::FindOrCreateTexture(const char *name, const TextureSpec &spec)
+TextureManager::hTexture TextureManager::FindOrCreateTexture(const char *name, const Texture::Spec &spec)
 {
     assert(NULL != name);
 
@@ -73,7 +78,7 @@ TextureManager::hTexture TextureManager::FindOrCreateTexture(const char *name, c
     if (cInvalidHandle != texHandle)
         return texHandle;    ///< Directly return the existed texture's handle after added its refcount.
 
-    Texture *texture = gRenderDevice->CreateTexture(spec);
+    Texture *texture = renderDevice->CreateTexture(spec);
     if (NULL == texture)
         return cInvalidHandle;
     texHandle = mResourceMgr->AddResource(name, texture);
@@ -97,7 +102,7 @@ bool TextureManager::ReleaseTexture(hTexture & handle)
     return destroyed;
 }
 
-const TextureSpec* TextureManager::GetTextureSpec(const hTexture& handle)
+const Texture::Spec* TextureManager::GetTextureSpec(const hTexture& handle)
 {
     const Texture *texture = mResourceMgr->FindResource(handle);
     return &texture->spec;

@@ -255,6 +255,10 @@
 				Name="renderdevice"
 				>
 				<File
+					RelativePath=".\rendersystem\renderdevice\apibridge.h"
+					>
+				</File>
+				<File
 					RelativePath=".\rendersystem\renderdevice\renderdevice.cpp"
 					>
 				</File>
@@ -325,7 +329,6 @@
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -333,7 +336,6 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -345,7 +347,6 @@
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCustomBuildTool"
@@ -353,7 +354,6 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release|Win32"
-						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCustomBuildTool"
@@ -364,11 +364,7 @@
 					Name="d3d9"
 					>
 					<File
-						RelativePath=".\rendersystem\renderdevice\d3d9\apibridge.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\rendersystem\renderdevice\d3d9\apibridge.h"
+						RelativePath=".\rendersystem\renderdevice\d3d9\apibridge_d3d9.cpp"
 						>
 					</File>
 					<File

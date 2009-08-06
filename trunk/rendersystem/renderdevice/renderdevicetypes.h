@@ -159,8 +159,6 @@ struct Texture
     APITexture*   apitexture;              ///< Point to graphics API's texture resource.
 };
 
-typedef Texture::Spec TextureSpec;
-
 enum ECubeFace 
 {
     CUBE_X,
@@ -177,26 +175,33 @@ struct Vertices
 {
     struct Spec
     {
-    
-    };
-};
+        int length;
+        int stride;
+        EResourceUsage usage;
 
-typedef Vertices::Spec VertexBufSpec;
+        Spec();
+        void Reset();
+    };
+
+    Vertices();
+    ~Vertices();
+
+    Spec         spec;
+    APIVertices* apivertices;
+};
 
 struct RegistersMap
 {
 
 };
 
-struct IndexBuffer
+struct Indices
 {
     struct Spec
     {
     
     };
 };
-
-typedef IndexBuffer::Spec IndexBufSpec;
 
 struct VertexShader
 {
