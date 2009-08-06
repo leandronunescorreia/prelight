@@ -6,6 +6,8 @@
 typedef IDirect3D9               APIInterface;
 typedef IDirect3DDevice9         APIRenderDevice;
 typedef IDirect3DBaseTexture9    APITexture;
+typedef IDirect3DVertexBuffer9   APIVertices;
+typedef IDirect3DIndexBuffer9    APIIndices;
 
 
 typedef HWND                     hScreen;

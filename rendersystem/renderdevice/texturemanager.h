@@ -4,6 +4,7 @@
 #include "renderdevicetypes.h"
 #include "../../common/resourcemanager.h"
 
+class RenderDevice;
 
 class TextureManager
 {
@@ -18,13 +19,13 @@ public:
     /param capacity is the maximum texture count can exists in TextureManager.
     */
     bool        Initialize(int capacity);
-    bool        Finalize();
+    void        Finalize();
 
     /** Find a texture by name, load a new texture from disk if this name doesn't exist.*/
     hTexture	FindOrLoadTexture(const char *filename);
 
     /** Find a texture by name, create a new empty texture if this name doesn't exist or existed texture's spec doesn't match.*/
-    hTexture    FindOrCreateTexture(const char *name, const TextureSpec &spec);
+    hTexture    FindOrCreateTexture(const char *name, const Texture::Spec &spec);
 
     /** Find a texture by name and increase refcount, return invalid handle if this name doesn't exist.*/
     hTexture    FindTexture(const char *name);
@@ -36,9 +37,11 @@ public:
 	bool	    ReloadTexture(Texture texture);
 
     /** Get texture's handle.*/
-    const TextureSpec*  GetTextureSpec(const hTexture& handle);
+    const Texture::Spec*  GetTextureSpec(const hTexture& handle);
 
 private:
+    RenderDevice    *renderDevice;
+
     ResourceManager<Texture> *mResourceMgr;
 };
 

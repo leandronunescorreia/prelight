@@ -3,6 +3,7 @@
 
 #include "renderdevicetypes.h"
 #include "texturemanager.h"
+#include "verticesmanager.h"
 
 enum
 {
@@ -56,6 +57,10 @@ class RenderDevice
 {
     friend class  TextureManager;
     friend struct Texture;
+
+    friend class  VerticesManager;
+    friend struct Vertices;
+
 
 public:
     struct Setting
@@ -132,7 +137,7 @@ public:
 protected:
     /** Texture functions*/
     //@{
-    Texture* CreateTexture(const TextureSpec &spec);
+    Texture* CreateTexture(const Texture::Spec &spec);
     Texture* CreateTexture(const void *data, int byteSize);
     bool     DestroyTexture(Texture *texture);
 
@@ -167,11 +172,11 @@ protected:
 
     /** Index buffer functions*/
     //@{
-    IndexBuffer*        CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-    void                DestroyIndexBuffer(IndexBuffer *buf);
-    void*               LockIndexBuffer(IndexBuffer *buf, int firstIndex = 0, int numIndices = 0, ELockType lock = LOCKTYPE_WRITE);
-    void                UnlockIndexBuffer(IndexBuffer *buf);
-    void                SetIndexBuffer(IndexBuffer *buf);
+    Indices*            CreateIndices(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
+    void                DestroyIndices(Indices *buf);
+    void*               LockIndices(Indices *buf, int firstIndex = 0, int numIndices = 0, ELockType lock = LOCKTYPE_WRITE);
+    void                UnlockIndices(Indices *buf);
+    void                SetIndices(Indices *buf);
     //@}
 
 
@@ -205,15 +210,14 @@ protected:
     void  OnLostDevice();
     void  OnResetDevice();
 
-    bool mInited;
-    int  mBeginRenderCount;
+    bool  mInited;
+    int   mBeginRenderCount;
 
     Setting                 mSetting;
     RenderStates            mRenderStates;
 
     TextureManager          mTextureManager;
+    VerticesManager         mVerticesManager;
 };
-
-extern RenderDevice *gRenderDevice;
 
 #endif  //_RENDERDEVICE_H_

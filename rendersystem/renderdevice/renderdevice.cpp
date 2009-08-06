@@ -1,9 +1,9 @@
 #include "renderdevice.h"
-#include "./d3d9/apibridge.h"
+#include "apibridge.h"
 
 
 RenderDevice RenderDevice::renderdeviceInstance;
-RenderDevice* gRenderDevice = RenderDevice::instance();
+
 
 RenderDevice::RenderDevice()
 : mInited(false)
@@ -229,7 +229,7 @@ void  RenderDevice::SetDepthStencilTexture(Texture *texture)
 
 /** Texture functions*/
 //@{
-Texture* RenderDevice::CreateTexture(const TextureSpec &spec)
+Texture* RenderDevice::CreateTexture(const Texture::Spec &spec)
 {
     return APIBridge::CreateTexture(spec);
 }
@@ -309,27 +309,27 @@ void  RenderDevice::SetRegistersMap(RegistersMap *registersMap)
 
 /** Index buffer functions*/
 //@{
-IndexBuffer* RenderDevice::CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage /*= RES_USAGE_WRITEONLY*/)
+Indices* RenderDevice::CreateIndices(int indexCount, int indexStride, EResourceUsage usage /*= RES_USAGE_WRITEONLY*/)
 {
     return NULL;
 }
 
-void RenderDevice::DestroyIndexBuffer(IndexBuffer *ibuf)
+void RenderDevice::DestroyIndices(Indices *ibuf)
 {
 
 }
 
-void* RenderDevice::LockIndexBuffer(IndexBuffer *ibuf, int firstIndex /*= 0*/, int numIndices /*= 0*/, ELockType lockType /*= LOCKTYPE_WRITE*/)
+void* RenderDevice::LockIndices(Indices *ibuf, int firstIndex /*= 0*/, int numIndices /*= 0*/, ELockType lockType /*= LOCKTYPE_WRITE*/)
 {
     return NULL;
 }
 
-void RenderDevice::UnlockIndexBuffer(IndexBuffer *ibuf)
+void RenderDevice::UnlockIndices(Indices *ibuf)
 {
 
 }
 
-void RenderDevice::SetIndexBuffer(IndexBuffer *ibuf)
+void RenderDevice::SetIndices(Indices *ibuf)
 {
     
 }

@@ -2,7 +2,8 @@
 #include "verticesmanager.h"
 
 VerticesManager::VerticesManager()
-: mResourceMgr(NULL)
+: renderDevice(NULL)
+, mResourceMgr(NULL)
 {
 }
 
@@ -16,42 +17,44 @@ bool VerticesManager::Initialize(int capacity)
     if (NULL != mResourceMgr)
         return false;
 
+    renderDevice = RenderDevice::instance();
     mResourceMgr = new ResourceManager<Vertices>(capacity);
+
     return true;
 }
 
-bool VerticesManager::Finalize()
+void VerticesManager::Finalize()
 {
-    if (NULL == mResourceMgr)
-        return false;
+    if (NULL != mResourceMgr)
+    {
+        delete mResourceMgr;
+        mResourceMgr = NULL;
+    }
 
-    delete mResourceMgr;
-    mResourceMgr = NULL;
-    return true;
+    renderDevice = NULL;
 }
 
-VerticesManager::hVertices VerticesManager::CreateVertices(const char *name, const VerticesSpec &verticesSpec)
+VerticesManager::hVertices VerticesManager::CreateVertices(const char *name, const Vertices::Spec &spec)
 {
     assert(NULL != name);
 
-    hVertices vbHandle = mResourceMgr->AddRef(name);
-    if (cInvalidHandle != vbHandle)
-        return vbHandle;    ///< Directly return the existed vertices's handle after added its refcount.
+    hVertices verticesHandle = mResourceMgr->AddRef(name);
+    if (cInvalidHandle != verticesHandle)
+        return verticesHandle;    ///< Directly return the existed vertices's handle after added its refcount.
 
-    Vertices *vertices = gRenderDevice->CreateVertices(spec);
+    Vertices *vertices = renderDevice->CreateVertices(spec.length, spec.stride, spec.usage);
     if (NULL == vertices)
         return cInvalidHandle;
-    vbHandle = mResourceMgr->AddResource(name, vertices);
-    return vbHandle;
+    verticesHandle = mResourceMgr->AddResource(name, vertices);
+    return verticesHandle;
 }
-
 
 VerticesManager::hVertices VerticesManager::FindVertices(const char *name)
 {
     assert(NULL != name);
 
-    hVertices vbHandle = mResourceMgr->AddRef(name);
-    return texhandle;
+    hVertices verticesHandle = mResourceMgr->AddRef(name);
+    return verticesHandle;
 }
 
 bool VerticesManager::ReleaseVertices(hVertices & handle)
@@ -62,10 +65,8 @@ bool VerticesManager::ReleaseVertices(hVertices & handle)
     return destroyed;
 }
 
-const VerticesSpec* VerticesManager::GetVerticesSpec(const hVertices& handle)
+const Vertices::Spec* VerticesManager::GetVerticesSpec(const hVertices& handle)
 {
-    Vertices *vertices = mResourceMgr->FindResource(handle);
+    const Vertices *vertices = mResourceMgr->FindResource(handle);
     return &vertices->spec;
 }
-
-

@@ -1,7 +1,7 @@
 #ifndef _APIBRIDGE_H_
 #define _APIBRIDGE_H_
 
-#include "../renderdevice.h"
+#include "renderdevice.h"
 
 class APIBridge
 {
@@ -47,7 +47,7 @@ public:
 
     /** Texture functions*/
     //@{
-    static Texture*        CreateTexture(const TextureSpec &spec);
+    static Texture*        CreateTexture(const Texture::Spec &spec);
     static Texture*        CreateTexture(const void *data, int byteSize);
     static bool            DestroyTexture(Texture *texture);
     
@@ -73,11 +73,11 @@ public:
 
     /** Index buffer functions*/
     //@{
-    static IndexBuffer*    CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
-    static void            DestroyIndexBuffer(IndexBuffer *ibuf);
-    static void*           LockIndexBuffer(IndexBuffer *ibuf, int firstIndex = 0, int numIndices = 0, ELockType lockType = LOCKTYPE_WRITE);
-    static void            UnlockIndexBuffer(IndexBuffer *ibuf);
-    static void            SetIndexBuffer(IndexBuffer *ibuf);
+    static Indices*    CreateIndices(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
+    static void            DestroyIndices(Indices *ibuf);
+    static void*           LockIndices(Indices *ibuf, int firstIndex = 0, int numIndices = 0, ELockType lockType = LOCKTYPE_WRITE);
+    static void            UnlockIndices(Indices *ibuf);
+    static void            SetIndices(Indices *ibuf);
     //@}
 
 

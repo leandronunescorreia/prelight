@@ -16,8 +16,9 @@ void Texture::Spec::Reset()
 }
 
 Texture::Texture()
+: apitexture(NULL)
 {
-    apitexture = NULL;
+    
 }
 
 Texture::~Texture()
@@ -26,3 +27,27 @@ Texture::~Texture()
     renderdevice->DestroyTexture(this);
 }
 
+
+Vertices::Spec::Spec()
+{
+    Reset();
+}
+
+void Vertices::Spec::Reset()
+{
+    length = 0;
+    stride = 0;
+    usage = RES_USAGE_WRITEONLY;
+}
+
+Vertices::Vertices()
+: apivertices(NULL)
+{
+
+}
+
+Vertices::~Vertices()
+{
+    static RenderDevice *renderDevice = RenderDevice::instance();
+    renderDevice->DestroyVertices(this);
+}

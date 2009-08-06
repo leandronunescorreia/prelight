@@ -1,4 +1,4 @@
-#include "apibridge.h"
+#include "../apibridge.h"
 
 static IDirect3D9*       d3d = NULL;
 static IDirect3DDevice9* d3dDevice = NULL;
@@ -236,7 +236,7 @@ void APIBridge::SetDepthStencilTexture(Texture *texture)
 
 /** Texture functions*/
 //@{
-Texture* APIBridge::CreateTexture(const TextureSpec &spec)
+Texture* APIBridge::CreateTexture(const Texture::Spec &spec)
 {
     return NULL;
 }
@@ -334,27 +334,27 @@ void APIBridge::SetRegistersMap(RegistersMap *registersMap)
 
 /** Index buffer functions*/
 //@{
-IndexBuffer* APIBridge::CreateIndexBuffer(int indexCount, int indexStride, EResourceUsage usage /*= RES_USAGE_WRITEONLY*/)
+Indices* APIBridge::CreateIndices(int indexCount, int indexStride, EResourceUsage usage /*= RES_USAGE_WRITEONLY*/)
 {
     return NULL;
 }
 
-void APIBridge::DestroyIndexBuffer(IndexBuffer *ibuf)
+void APIBridge::DestroyIndices(Indices *ibuf)
 {
 
 }
 
-void* APIBridge::LockIndexBuffer(IndexBuffer *ibuf, int firstIndex /*= 0*/, int numIndices /*= 0*/, ELockType lockType /*= LOCKTYPE_WRITE*/)
+void* APIBridge::LockIndices(Indices *ibuf, int firstIndex /*= 0*/, int numIndices /*= 0*/, ELockType lockType /*= LOCKTYPE_WRITE*/)
 {
     return NULL;
 }
 
-void APIBridge::UnlockIndexBuffer(IndexBuffer *ibuf)
+void APIBridge::UnlockIndices(Indices *ibuf)
 {
 
 }
 
-void APIBridge::SetIndexBuffer(IndexBuffer *ibuf)
+void APIBridge::SetIndices(Indices *ibuf)
 {
 
 }
