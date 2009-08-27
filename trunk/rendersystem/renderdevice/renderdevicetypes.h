@@ -171,6 +171,61 @@ enum ECubeFace
 };
 
 
+/**
+Imitate a runtime typeinfo for vertices.
+*/
+//@{
+enum EVertexMemberType
+{
+    VMT_FLOAT1,
+    VMT_FLOAT2,
+    VMT_FLOAT3,
+    VMT_FLOAT4,
+    VMT_D3DCOLOR,
+    VMT_UBYTE4,
+    VMT_SHORT2,
+    VMT_SHORT4,
+    VMT_UBYTE4N,
+    VMT_SHORT2N,
+    VMT_SHORT4N,
+    VMT_USHORT2N,
+    VMT_USHORT4N,
+    VMT_UDEC3,
+    VMT_DEC3N,
+    VMT_FLOAT16_2,
+    VMT_FLOAT16_4,
+};
+
+enum EVertexMember
+{
+    VM_POSITION,
+    VM_TEXCOORD0,
+    VM_TEXCOORD1,
+    VM_TEXCOORD2,
+    VM_TEXCOORD3,
+    VM_NORMAL,
+    VM_TANGENT,
+    VM_BINORMAL,
+    VM_COLOR,
+};
+
+
+struct VerticesTypeInfo
+{
+    struct MemberInfo
+    {
+        int               offset;
+        EVertexMemberType type;
+        EVertexMember     member;
+    };
+
+    static const int MAX_NUM_MEMBER = 9;
+    MemberInfo members[MAX_NUM_MEMBER];
+
+    void AddMember(EVertexMemberType type, EVertexMember member);
+};
+
+
 struct Vertices
 {
     struct Spec
@@ -179,6 +234,7 @@ struct Vertices
         int stride;
         EResourceUsage usage;
 
+        void AddMember(EVertexMemberType type, EVertexMember member);
         Spec();
         void Reset();
     };
@@ -189,6 +245,7 @@ struct Vertices
     Spec         spec;
     APIVertices* apivertices;
 };
+//@}
 
 struct RegistersMap
 {

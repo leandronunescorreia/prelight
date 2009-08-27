@@ -137,21 +137,21 @@ public:
 protected:
     /** Texture functions*/
     //@{
-    Texture* CreateTexture(const Texture::Spec &spec);
-    Texture* CreateTexture(const void *data, int byteSize);
-    bool     DestroyTexture(Texture *texture);
+    Texture*            CreateTexture(const Texture::Spec &spec);
+    Texture*            CreateTexture(const void *data, int byteSize);
+    bool                DestroyTexture(Texture *texture);
 
-    void*    LockTexture(Texture *texture, int mipLevel, ELockType lockType, int *pitch = 0);
-    void     UnlockTexture(Texture *texture, int mipLevel);
+    void*               LockTexture(Texture *texture, int mipLevel, ELockType lockType, int *pitch = 0);
+    void                UnlockTexture(Texture *texture, int mipLevel);
     //@}
 
     /** Bind texture with sampler.*/
-    void     SetSamplerTexture(int idx, const Texture *texture);
+    void                SetSamplerTexture(int idx, const Texture *texture);
 
     /** Render Target*/
     //@{
-    void     SetRenderTarget(int idx, Texture *texture);
-    void     SetDepthStencilTexture(Texture *texture);
+    void                SetRenderTarget(int idx, Texture *texture);
+    void                SetDepthStencilTexture(Texture *texture);
     //@}
 
     /** Vertex buffer functions*/
