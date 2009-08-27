@@ -1,0 +1,60 @@
+\\Engine
+
+\Engine\\common
+Common code, not only be used by special module
+
+
+
+\Engine\\RenderSystem
+
+
+
+\Engine\RenderSystem\\RenderDevice
+*DONE:
+-Defined necessary interfaces
+-Defined renderstates types for a simple no translucent object renderer
+-Implemented nofullscreen renderdevice initialization.
+-Implemented texture, vertices resource create funtion.
+*TODO: <Next TODO>
+-Debug text output	
+ Only for debug purpose, not for UI's text using.
+ Display ascii characters at specified position with specified color. 
+ *DEPENDS:
+ -All kernel resource handle create and destroy.
+ -Basic drawprimitive flow.
+ *WAITING:
+ -Indices, Shader's handle create and destroy.
+ -Basic drawprimitive flow.
+
+ 
+\Engine\RenderSystem\RenderDevice\\TextureManager
+*DONE:
+-Texture handle create and destroy
+
+\Engine\RenderSystem\RenderDevice\\VerticesManager
+*DONE:
+-Vertices handle create and destroy
+
+\Engine\RenderSystem\RenderDevice\\IndicesManager
+*TODO:
+-Indices handle create and destroy
+
+\Engine\RenderSystem\RenderDevice\\ShaderManager
+*TODO:
+-Shader handle create and destroy
+-Runtime shader code generate
+
+
+
+\Engine\\Console
+Graphics console 
+*WAITING: 
+-Debug text output
+*TODO:
+-Text buffer
+-Screen character width and height's setting and change
+-Screen pageup and pagedown support
+-Current screen text buffer
+-Console Variable
+-Console Function
+

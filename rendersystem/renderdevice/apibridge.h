@@ -73,7 +73,7 @@ public:
 
     /** Index buffer functions*/
     //@{
-    static Indices*    CreateIndices(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
+    static Indices*        CreateIndices(int indexCount, int indexStride, EResourceUsage usage = RES_USAGE_WRITEONLY);
     static void            DestroyIndices(Indices *ibuf);
     static void*           LockIndices(Indices *ibuf, int firstIndex = 0, int numIndices = 0, ELockType lockType = LOCKTYPE_WRITE);
     static void            UnlockIndices(Indices *ibuf);
