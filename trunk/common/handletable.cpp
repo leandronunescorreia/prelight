@@ -64,7 +64,7 @@ int StringHashTable::HashString(const char *str, unsigned int& hash)
 
 /** 
 Insert key value pair node.
-/return true means there is actually a new key/node has been inserted.
+\return true means there is actually a new key/node has been inserted.
         false means there is no new node has been inserted.
 */
 bool StringHashTable::Insert(const char *key, int value)
@@ -93,7 +93,7 @@ bool StringHashTable::Insert(const char *key, int value)
 
 /**
 Remove the key specified node from the hash table and free it space.
-/return true means there is actually a key/node has been erased.
+\return true means there is actually a key/node has been erased.
 */
 bool StringHashTable::Erase(const char *key)
 {
@@ -119,8 +119,8 @@ bool StringHashTable::Erase(const char *key)
 
 /** 
 Find key's corresponding value
-/param value key's value if found, otherwise undefined.
-/return true if found, otherwise false.
+\param value key's value if found, otherwise undefined.
+\return true if found, otherwise false.
 */
 bool StringHashTable::FindValue(const char *key, int& value)
 {
@@ -211,7 +211,7 @@ HandleTable::Slot* HandleTable::AddRef(const Handle& handle)
 
 /**
 Release a reference for specified handle. 
-/return A pointer to the slot, if nothing references it any more. Otherwise return NULL.
+\return A pointer to the slot, if nothing references it any more. Otherwise return NULL.
 /remark The code who called this function should check the the return value, if its 
         a valid slot pointer, the caller code should release memory space pointed by this slot.
 */

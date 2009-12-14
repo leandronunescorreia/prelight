@@ -6,7 +6,7 @@
 #include "HandleTable.h"
 
 /**
-/class ResourceManager
+\class ResourceManager
 Generic resource data manager class.
 */
 template<class ResType>
@@ -58,7 +58,7 @@ ResourceManager<ResType>::~ResourceManager()
 
 /** 
 If a resource which uses this name already existed, release the old resource and bind the name with the /para res.
-/return handle of the /param res
+\return handle of the \param res
 */
 template<class ResType>
 typename ResourceManager<ResType>::Handle ResourceManager<ResType>::AddResource(const char* name, Resource* res)

@@ -4,7 +4,7 @@
 #include "rendersystem.h"
 
 /**
-/class RenderPath
+\class RenderPath
 It's an abstract base class for all different render path class implementions.
 
 RenderPath is an abstract layer for render strategy. 
@@ -23,7 +23,7 @@ to draw render resources.
 All interfaces are virtual functions, so RenderSystem can create a proper RenderPath class after detected 
 hardware cap at runtime.
 
-/class DrawCallObject
+\class DrawCallObject
 At RenderPath layer, there exists a sort of objects called drawcall objects.
 Each drawcall objects may corresponds to a drawcall.
 It contains reference to kernel resources like vertex buffer, index buffer, shader, and contain reference

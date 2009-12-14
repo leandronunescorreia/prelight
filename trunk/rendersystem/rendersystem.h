@@ -4,7 +4,7 @@
 #include "./renderdevice/renderdevice.h"
 
 /**
-/class RenderSystem
+\class RenderSystem
 RenderSystem is an abstract layer for all visible things.
 
 RenderSystem contain some resources. These resources are called render resource:

@@ -38,7 +38,7 @@ struct RenderStates
 
 
 /**
-/class RenderDevice
+\class RenderDevice
 RenderDevice hidden differents for different Graphics APIs (e.g. DirectX, XBOX 360 DirectX, OpenGL).
 All GPU commands should be called through it.
 

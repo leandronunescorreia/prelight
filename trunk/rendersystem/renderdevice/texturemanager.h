@@ -16,7 +16,7 @@ public:
     static const hTexture cInvalidHandle = ResourceManager<Texture>::cInvalidHandle;
 
     /**
-    /param capacity is the maximum texture count can exists in TextureManager.
+    \param capacity is the maximum texture count can exists in TextureManager.
     */
     bool        Initialize(int capacity);
     void        Finalize();
