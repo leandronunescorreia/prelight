@@ -3,13 +3,22 @@
 
 #include "renderdevice.h"
 
+/** \class APIBridge 
+Define static bridge/converter functions for graphics api functions.
+All of these functions' jobs:
+1. Convert the function parameters to graphics api's corresponding parameters.
+2. Call corresponding graphics api function by passing converted parameters.
+3. Convert graphics api function's return value to corresponding engine type value.
+
+What are these function forbid to do: 
+1. Access renderdevice's member functions or variables.
+2. Keep themselves member data.
+*/
 class APIBridge
 {
 public:
     static APIRenderDevice*    GetAPIRenderDevice();
 
-    /** Actual API bridge functions, only convert function call to graphics api call, don't access device member.*/
-    //@{
     static bool  Initialize(const RenderDevice::Setting &setting);
     static void  Finalize();
 
@@ -121,8 +130,6 @@ public:
     static void             ShowCursor(bool show);
     static void             SetCursorTexture(int id, int xHotSpot, int yHotSpot);
     static void             SetCursorPosition(int x, int y);
-    //@}
-    
     //@}
 };
 
