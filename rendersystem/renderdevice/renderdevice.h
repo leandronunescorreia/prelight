@@ -50,7 +50,7 @@ RenderDevice can create some resources are called kernel resources.
 
 RenderDevice can creat them but doesn't manage them. 
 RenderDevice has references to TextureManager, ShaderManager, VerticesManager, IndicesManager class instance.
-These classes implement resouces management all these kernel resources, and hide their but expose handle of them.
+These classes implement resouces management for all these kernel resources, and hide them but expose handle of them.
 */
 
 class RenderDevice
