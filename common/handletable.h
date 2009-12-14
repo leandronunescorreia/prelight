@@ -2,7 +2,7 @@
 #define _HANDLETABLE_H_
 
 /**
-/class StringHashTable
+\class StringHashTable
 Hash mapping strings to integers
 
 /remark It won't alloc buffer to duplicate the key string, but simply 
@@ -46,7 +46,7 @@ private:
 
 
 /**
-/class HandleTable
+\class HandleTable
 Manage handle slots by counting their reference counts.
 Its slots can be setted to point to resources and count reference counts for these resources.
 It doesn't free resources memory but only notify its caller when nothing is reference to one of its slots.
